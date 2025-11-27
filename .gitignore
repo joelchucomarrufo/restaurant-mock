@@ -1,0 +1,49 @@
+# Dependencias
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
+
+# Compilación
+dist/
+build/
+*.tsbuildinfo
+
+# Certificados (NO subir a GitHub por seguridad)
+certs/
+*.pem
+*.key
+*.crt
+*.cert
+
+# Variables de entorno
+.env
+.env.local
+.env.*.local
+
+# Logs
+logs/
+*.log
+
+# IDEs y editores
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Docker
+.dockerignore
+
+# Testing
+coverage/
+.nyc_output/
+
+# Temporal
+tmp/
+temp/
+*.tmp
+

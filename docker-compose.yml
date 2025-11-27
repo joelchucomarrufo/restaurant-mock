@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  tottem-mock-api:
+    build: .
+    container_name: tottem-mock-api
+    ports:
+      # Exponer HTTPS en el puerto 443 del host hacia el 3000 del contenedor
+      - '443:3000'
+    environment:
+      - PORT=3000
+      # Rutas de los certificados dentro del contenedor (deben ser variables=valor, no clave: valor)
+      - SSL_KEY_PATH=/app/certs/localhost+4-key.pem
+      - SSL_CERT_PATH=/app/certs/localhost+4.pem
+    # Montar los certificados desde la máquina host en /app/certs dentro del contenedor
+    volumes:
+      - ./certs:/app/certs:ro
+    restart: unless-stopped
+
+
