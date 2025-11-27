@@ -103,3 +103,36 @@ La API quedará disponible en:
 > - Si el certificado es autofirmado (self-signed), deberás confiar en él en tu navegador o en el dispositivo Android
 > - Para Android, puedes instalar el certificado como "CA de usuario" en la configuración del dispositivo
 
+### Endpoints adicionales
+
+- `GET /api/version.json` - Obtener información de versión de la aplicación
+- `GET /api/apks/:filename` - Descargar archivo APK (ejemplo: `/api/apks/myapp-v15.apk`)
+
+### Archivos APK
+
+Los archivos APK deben colocarse en la carpeta `public/apks/`:
+
+```bash
+# Ejemplo: colocar tu APK en la carpeta
+cp mi-app.apk public/apks/myapp-v15.apk
+```
+
+**Para Railway:**
+
+1. Los archivos APK deben estar en `public/apks/` en tu repositorio
+2. Railway copiará automáticamente la carpeta `public` al desplegar
+3. Una vez desplegado, los APKs estarán disponibles en:
+   - `https://tu-app.railway.app/api/apks/myapp-v15.apk`
+4. Actualiza la URL en `version.json` para que apunte a tu dominio de Railway:
+   ```json
+   {
+     "apkUrl": "https://tu-app.railway.app/api/apks/myapp-v15.apk"
+   }
+   ```
+
+**Nota:** Si no quieres subir los APKs a GitHub, descomenta la línea en `.gitignore`:
+```
+public/apks/*.apk
+```
+En ese caso, deberás subir los APKs manualmente a Railway usando su interfaz o CLI.
+
