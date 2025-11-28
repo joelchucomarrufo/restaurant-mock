@@ -1,21 +1,11 @@
 import 'reflect-metadata';
-import * as fs from 'fs';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 async function bootstrap() {
-  // Configuración opcional de HTTPS: si se definen las rutas de los certificados,
-  // Nest levantará el servidor en HTTPS directamente.
-  const httpsOptions =
-    process.env.SSL_KEY_PATH && process.env.SSL_CERT_PATH
-      ? {
-          key: fs.readFileSync(process.env.SSL_KEY_PATH),
-          cert: fs.readFileSync(process.env.SSL_CERT_PATH),
-        }
-      : undefined;
-
-  const app = await NestFactory.create(AppModule, { httpsOptions });
+  // Ocean Digital maneja HTTPS automáticamente, así que la app corre en HTTP internamente
+  const app = await NestFactory.create(AppModule);
 
   // Prefijo global para que coincida con la colección: /api/queries/...
   app.setGlobalPrefix('api');
@@ -44,12 +34,15 @@ async function bootstrap() {
   const port = process.env.PORT || 3000;
   await app.listen(port);
 
-  const protocol = httpsOptions ? 'https' : 'http';
   // eslint-disable-next-line no-console
-  console.log(`Tottem Mock API escuchando en ${protocol}://localhost:${port}`);
+  console.log(`Tottem Mock API escuchando en http://localhost:${port}`);
   // eslint-disable-next-line no-console
   console.log(
-    `Swagger UI disponible en ${protocol}://localhost:${port}/api-docs`,
+    `Swagger UI disponible en http://localhost:${port}/api-docs`,
+  );
+  // eslint-disable-next-line no-console
+  console.log(
+    `Nota: Ocean Digital maneja HTTPS automáticamente en producción`,
   );
 }
 

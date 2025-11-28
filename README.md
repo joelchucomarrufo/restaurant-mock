@@ -7,10 +7,15 @@ API mock que replica las respuestas de la colección Postman proporcionada, cons
 - Node.js 18+ (recomendado 20)
 - npm
 - Docker y Docker Compose (para despliegue en contenedor)
+- Git LFS (para archivos APK grandes) - Instalar con: `git lfs install`
 
 ### Instalación
 
 ```bash
+# Instalar Git LFS (necesario para archivos APK)
+git lfs install
+
+# Instalar dependencias
 npm install
 ```
 
@@ -56,38 +61,9 @@ Todos requieren el header:
 
 Los cuerpos y respuestas están mockeados según la colección Postman.
 
-### Despliegue con Docker (HTTPS)
+### Despliegue con Docker (local)
 
-#### 1. Generar certificados SSL (self-signed para desarrollo)
-
-Si no tienes certificados, puedes generarlos con `mkcert` o `openssl`:
-
-**Opción A: Usando mkcert (recomendado para desarrollo local)**
-
-```bash
-# Instalar mkcert (si no lo tienes)
-# Windows: choco install mkcert
-# macOS: brew install mkcert
-# Linux: ver https://github.com/FiloSottile/mkcert
-
-# Crear carpeta certs
-mkdir certs
-
-# Generar certificado para localhost
-mkcert -key-file certs/localhost+4-key.pem -cert-file certs/localhost+4.pem localhost 127.0.0.1 ::1
-```
-
-**Opción B: Usando OpenSSL**
-
-```bash
-# Crear carpeta certs
-mkdir certs
-
-# Generar certificado autofirmado
-openssl req -x509 -newkey rsa:4096 -keyout certs/localhost+4-key.pem -out certs/localhost+4.pem -days 365 -nodes -subj "/CN=localhost"
-```
-
-#### 2. Construir y levantar el contenedor
+Para desarrollo local:
 
 ```bash
 docker compose up --build
@@ -95,13 +71,37 @@ docker compose up --build
 
 La API quedará disponible en:
 
-- `https://localhost` (puerto 443)
-- Swagger UI: `https://localhost/api-docs`
+- `http://localhost:3000`
+- Swagger UI: `http://localhost:3000/api-docs`
 
-> **Nota importante:** 
-> - Los certificados **NO se suben a GitHub** (están en `.gitignore` por seguridad)
-> - Si el certificado es autofirmado (self-signed), deberás confiar en él en tu navegador o en el dispositivo Android
-> - Para Android, puedes instalar el certificado como "CA de usuario" en la configuración del dispositivo
+### Despliegue en Ocean Digital
+
+Ocean Digital maneja HTTPS automáticamente, por lo que no necesitas configurar certificados SSL.
+
+#### Pasos para desplegar:
+
+1. **Conecta tu repositorio de GitHub a Ocean Digital**
+   - Ve a tu panel de Ocean Digital
+   - Crea una nueva aplicación
+   - Conecta tu repositorio: `https://github.com/joelchucomarrufo/restaurant-mock`
+
+2. **Configuración del despliegue:**
+   - **Build Command:** `npm run build`
+   - **Start Command:** `npm start`
+   - **Puerto:** `3000` (o el que configure Ocean Digital)
+   - **Variables de entorno:** No se requieren certificados SSL
+
+3. **Una vez desplegado:**
+   - Tu API estará disponible en HTTPS automáticamente
+   - Ejemplo: `https://tu-app.ocean-digital.com/api`
+   - Swagger UI: `https://tu-app.ocean-digital.com/api-docs`
+
+4. **Actualiza las URLs en `version.json`:**
+   ```json
+   {
+     "apkUrl": "https://tu-app.ocean-digital.com/api/apks/myapp-v15.apk"
+   }
+   ```
 
 ### Endpoints adicionales
 
@@ -117,16 +117,16 @@ Los archivos APK deben colocarse en la carpeta `public/apks/`:
 cp mi-app.apk public/apks/myapp-v15.apk
 ```
 
-**Para Railway:**
+**Para Ocean Digital:**
 
 1. Los archivos APK deben estar en `public/apks/` en tu repositorio
-2. Railway copiará automáticamente la carpeta `public` al desplegar
+2. Ocean Digital copiará automáticamente la carpeta `public` al desplegar
 3. Una vez desplegado, los APKs estarán disponibles en:
-   - `https://tu-app.railway.app/api/apks/myapp-v15.apk`
-4. Actualiza la URL en `version.json` para que apunte a tu dominio de Railway:
+   - `https://tu-app.ocean-digital.com/api/apks/myapp-v15.apk`
+4. Actualiza la URL en `version.json` para que apunte a tu dominio de Ocean Digital:
    ```json
    {
-     "apkUrl": "https://tu-app.railway.app/api/apks/myapp-v15.apk"
+     "apkUrl": "https://tu-app.ocean-digital.com/api/apks/myapp-v15.apk"
    }
    ```
 
@@ -134,5 +134,5 @@ cp mi-app.apk public/apks/myapp-v15.apk
 ```
 public/apks/*.apk
 ```
-En ese caso, deberás subir los APKs manualmente a Railway usando su interfaz o CLI.
+En ese caso, deberás subir los APKs manualmente a Ocean Digital usando su interfaz o CLI.
 
