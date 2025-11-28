@@ -7,15 +7,10 @@ API mock que replica las respuestas de la colección Postman proporcionada, cons
 - Node.js 18+ (recomendado 20)
 - npm
 - Docker y Docker Compose (para despliegue en contenedor)
-- Git LFS (para archivos APK grandes) - Instalar con: `git lfs install`
 
 ### Instalación
 
 ```bash
-# Instalar Git LFS (necesario para archivos APK)
-git lfs install
-
-# Instalar dependencias
 npm install
 ```
 
@@ -95,44 +90,4 @@ Ocean Digital maneja HTTPS automáticamente, por lo que no necesitas configurar 
    - Tu API estará disponible en HTTPS automáticamente
    - Ejemplo: `https://tu-app.ocean-digital.com/api`
    - Swagger UI: `https://tu-app.ocean-digital.com/api-docs`
-
-4. **Actualiza las URLs en `version.json`:**
-   ```json
-   {
-     "apkUrl": "https://tu-app.ocean-digital.com/api/apks/myapp-v15.apk"
-   }
-   ```
-
-### Endpoints adicionales
-
-- `GET /api/version.json` - Obtener información de versión de la aplicación
-- `GET /api/apks/:filename` - Descargar archivo APK (ejemplo: `/api/apks/myapp-v15.apk`)
-
-### Archivos APK
-
-Los archivos APK deben colocarse en la carpeta `public/apks/`:
-
-```bash
-# Ejemplo: colocar tu APK en la carpeta
-cp mi-app.apk public/apks/myapp-v15.apk
-```
-
-**Para Ocean Digital:**
-
-1. Los archivos APK deben estar en `public/apks/` en tu repositorio
-2. Ocean Digital copiará automáticamente la carpeta `public` al desplegar
-3. Una vez desplegado, los APKs estarán disponibles en:
-   - `https://tu-app.ocean-digital.com/api/apks/myapp-v15.apk`
-4. Actualiza la URL en `version.json` para que apunte a tu dominio de Ocean Digital:
-   ```json
-   {
-     "apkUrl": "https://tu-app.ocean-digital.com/api/apks/myapp-v15.apk"
-   }
-   ```
-
-**Nota:** Si no quieres subir los APKs a GitHub, descomenta la línea en `.gitignore`:
-```
-public/apks/*.apk
-```
-En ese caso, deberás subir los APKs manualmente a Ocean Digital usando su interfaz o CLI.
 
