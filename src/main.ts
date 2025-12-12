@@ -12,13 +12,16 @@ async function bootstrap() {
 
   const config = new DocumentBuilder()
     .setTitle('Tottem Mock API')
-    .setDescription('API mock basada en la colección Postman proporcionada.')
+    .setDescription(
+      'API mock basada en la colección Postman proporcionada. Todos los endpoints requieren el header x-api-key para autenticación.',
+    )
     .setVersion('1.0.0')
     .addApiKey(
       {
         type: 'apiKey',
         name: 'x-api-key',
         in: 'header',
+        description: 'API Key requerida para autenticación. Ejemplo: 5eSst?Yt@kkaX6S',
       },
       'x-api-key',
     )
@@ -28,7 +31,9 @@ async function bootstrap() {
     })
     .build();
 
-  const document = SwaggerModule.createDocument(app, config);
+  const document = SwaggerModule.createDocument(app, config, {
+    deepScanRoutes: true,
+  });
   SwaggerModule.setup('api-docs', app, document);
 
   const port = process.env.PORT || 3000;
