@@ -37,6 +37,14 @@ import {
   ProductoCheckoutRequestDto,
 } from './dto/checkout-products.dto';
 import {
+  SalesReportByStoreRequestDto,
+  TotalReportResponseDto,
+} from './dto/sales-report-by-store.dto';
+import {
+  ReportSalesRequestDto,
+  MovementReportResponseItemDto,
+} from './dto/report-sales.dto';
+import {
   ImagenDto,
   LoyaltyDto,
   PromocionBancariaDto,
@@ -54,6 +62,8 @@ import { sectionsMockData } from './data/sections.data';
 import { detailSectionsMockData } from './data/detail-sections.data';
 import { loyaltiMockData } from './data/loyalti.data';
 import { checkoutProductsMockData } from './data/checkout-products.data';
+import { buildTotalReport } from './builders/total-report.builder';
+import { buildMovementReport } from './builders/movement-report.builder';
 
 @ApiTags('Tottem Mock')
 @Controller('queries')
@@ -74,6 +84,8 @@ import { checkoutProductsMockData } from './data/checkout-products.data';
   LoyaltiRequestDto,
   CheckoutProductsRequestDto,
   ProductoCheckoutRequestDto,
+  SalesReportByStoreRequestDto,
+  ReportSalesRequestDto,
   // Response DTOs
   StoresResponseDto,
   AppConfigResponseDto,
@@ -82,6 +94,8 @@ import { checkoutProductsMockData } from './data/checkout-products.data';
   DetailSectionsResponseDto,
   LoyaltiResponseDto,
   CheckoutProductsResponseDto,
+  TotalReportResponseDto,
+  MovementReportResponseItemDto,
   // Nested DTOs
   TiendaDto,
   ImagenDto,
@@ -460,5 +474,88 @@ export class MockController {
         },
       },
     };
+  }
+
+  @Post('sales-report-by-store')
+  @HttpCode(HttpStatus.CREATED)
+  @ApiOperation({ summary: 'Reporte de ventas totales por tienda' })
+  @ApiBody({
+    type: SalesReportByStoreRequestDto,
+    examples: {
+      default: {
+        value: {
+          canal: 'TOTTEM',
+          fecha: '2025-12-17',
+          ip: '192.168.114.154',
+          proceso: 'reportes',
+          tienda: 'T001',
+          trazabilidad: '456',
+        },
+        description: 'Ejemplo de request para reporte de ventas por tienda',
+      },
+    },
+  })
+  @ApiResponse({
+    status: 201,
+    description: 'Reporte de ventas totales generado exitosamente.',
+    type: TotalReportResponseDto,
+  })
+  @ApiResponse({
+    status: 401,
+    description: 'Unauthorized - API Key inválida o faltante',
+    schema: {
+      example: {
+        statusCode: 401,
+        message: 'Invalid x-api-key',
+        error: 'Unauthorized',
+      },
+    },
+  })
+  salesReportByStore(
+    @Body() body: SalesReportByStoreRequestDto,
+  ): TotalReportResponseDto {
+    return buildTotalReport(body);
+  }
+
+  @Post('report-sales')
+  @HttpCode(HttpStatus.CREATED)
+  @ApiOperation({ summary: 'Reporte de movimientos de ventas' })
+  @ApiBody({
+    type: ReportSalesRequestDto,
+    examples: {
+      default: {
+        value: {
+          canal: 'TOTTEM',
+          fecha: '2025-12-17',
+          ip: '192.168.145.125',
+          proceso: 'reportes',
+          tienda: 'T005',
+          trazabilidad: '852',
+        },
+        description: 'Ejemplo de request para reporte de movimientos de ventas',
+      },
+    },
+  })
+  @ApiResponse({
+    status: 201,
+    description: 'Lista de movimientos de ventas generada exitosamente.',
+    type: MovementReportResponseItemDto,
+    isArray: true,
+  })
+  @ApiResponse({
+    status: 401,
+    description: 'Unauthorized - API Key inválida o faltante',
+    schema: {
+      example: {
+        statusCode: 401,
+        message: 'Invalid x-api-key',
+        error: 'Unauthorized',
+      },
+    },
+  })
+  reportSales(
+    @Body() body: ReportSalesRequestDto,
+  ): MovementReportResponseItemDto[] {
+    return buildMovementReport(body);
   }
 }
