@@ -43,3 +43,4 @@ export class MovementReportResponseItemDto {
   transaccionepos!: number;
 }
 
+

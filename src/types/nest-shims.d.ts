@@ -7,6 +7,8 @@ declare module '@nestjs/common' {
       getRequest<T = any>(): T;
       getResponse<T = any>(): T;
     };
+    getHandler(): any;
+    getClass(): any;
   }
   export function Injectable(): ClassDecorator;
   export function Module(metadata: any): ClassDecorator;
@@ -15,6 +17,8 @@ declare module '@nestjs/common' {
   export function Body(): ParameterDecorator;
   export function HttpCode(statusCode: number): MethodDecorator;
   export function UseGuards(...guards: any[]): ClassDecorator & MethodDecorator;
+  export function SetMetadata(key: string, value: any): ClassDecorator & MethodDecorator;
+  export function Get(path?: string): MethodDecorator;
   export enum HttpStatus {
     OK = 200,
     CREATED = 201,
@@ -28,7 +32,14 @@ declare module '@nestjs/common' {
   }
 }
 
-declare module '@nestjs/core';
+declare module '@nestjs/core' {
+  export class Reflector {
+    getAllAndOverride<T>(metadataKey: any, targets: any[]): T | undefined;
+  }
+  export class NestFactory {
+    static create(module: any): Promise<any>;
+  }
+}
 declare module '@nestjs/platform-express';
 declare module '@nestjs/swagger';
 

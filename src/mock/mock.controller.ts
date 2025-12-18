@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Get,
   HttpCode,
   HttpStatus,
   Post,
@@ -15,6 +16,7 @@ import {
   ApiTags,
 } from '@nestjs/swagger';
 import { ApiKeyGuard } from './guards/api-key.guard';
+import { Public } from './decorators/public.decorator';
 import { StoresRequestDto, StoresResponseDto, TiendaDto } from './dto/stores.dto';
 import { AppConfigRequestDto, AppConfigResponseDto, ConfigDto } from './dto/app-config.dto';
 import {
@@ -44,6 +46,7 @@ import {
   ReportSalesRequestDto,
   MovementReportResponseItemDto,
 } from './dto/report-sales.dto';
+import { HealthResponseDto } from './dto/health.dto';
 import {
   ImagenDto,
   LoyaltyDto,
@@ -96,6 +99,7 @@ import { buildMovementReport } from './builders/movement-report.builder';
   CheckoutProductsResponseDto,
   TotalReportResponseDto,
   MovementReportResponseItemDto,
+  HealthResponseDto,
   // Nested DTOs
   TiendaDto,
   ImagenDto,
@@ -557,5 +561,13 @@ export class MockController {
     @Body() body: ReportSalesRequestDto,
   ): MovementReportResponseItemDto[] {
     return buildMovementReport(body);
+  }
+
+  @Get('health')
+  @Public()
+  @ApiOperation({ summary: 'Health check del servicio mock' })
+  @ApiResponse({ status: 200, type: HealthResponseDto })
+  health(): HealthResponseDto {
+    return { ok: 'serv restaurant' };
   }
 }

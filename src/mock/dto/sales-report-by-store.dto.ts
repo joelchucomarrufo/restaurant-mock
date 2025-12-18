@@ -52,3 +52,4 @@ export class TotalReportResponseDto {
   trazabilidad!: string;
 }
 
+
