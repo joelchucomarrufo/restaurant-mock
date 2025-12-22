@@ -48,6 +48,17 @@ import {
 } from './dto/report-sales.dto';
 import { HealthResponseDto } from './dto/health.dto';
 import {
+  SearchCreditNoteRequestDto,
+  SearchCreditNoteResponseDto,
+  ClientResponseDto,
+  BankPromotionResponseDto,
+} from './dto/search-credit-note.dto';
+import {
+  CreateCreditNoteRequestDto,
+  CreateCreditNoteResponseDto,
+  ReceiptAttributesResponseDto,
+} from './dto/create-credit-note.dto';
+import {
   ImagenDto,
   LoyaltyDto,
   PromocionBancariaDto,
@@ -67,6 +78,8 @@ import { loyaltiMockData } from './data/loyalti.data';
 import { checkoutProductsMockData } from './data/checkout-products.data';
 import { buildTotalReport } from './builders/total-report.builder';
 import { buildMovementReport } from './builders/movement-report.builder';
+import { buildSearchCreditNote } from './builders/search-credit-note.builder';
+import { buildCreateCreditNote } from './builders/create-credit-note.builder';
 
 @ApiTags('Tottem Mock')
 @Controller('queries')
@@ -89,6 +102,8 @@ import { buildMovementReport } from './builders/movement-report.builder';
   ProductoCheckoutRequestDto,
   SalesReportByStoreRequestDto,
   ReportSalesRequestDto,
+  SearchCreditNoteRequestDto,
+  CreateCreditNoteRequestDto,
   // Response DTOs
   StoresResponseDto,
   AppConfigResponseDto,
@@ -100,6 +115,8 @@ import { buildMovementReport } from './builders/movement-report.builder';
   TotalReportResponseDto,
   MovementReportResponseItemDto,
   HealthResponseDto,
+  SearchCreditNoteResponseDto,
+  CreateCreditNoteResponseDto,
   // Nested DTOs
   TiendaDto,
   ImagenDto,
@@ -117,6 +134,9 @@ import { buildMovementReport } from './builders/movement-report.builder';
   TotalDescuentoDto,
   TotalPagarDto,
   TotalesDto,
+  ClientResponseDto,
+  BankPromotionResponseDto,
+  ReceiptAttributesResponseDto,
 )
 export class MockController {
   @Post('stores')
@@ -569,5 +589,92 @@ export class MockController {
   @ApiResponse({ status: 200, type: HealthResponseDto })
   health(): HealthResponseDto {
     return { ok: 'serv restaurant' };
+  }
+
+  @Post('search-credit-note')
+  @HttpCode(HttpStatus.CREATED)
+  @ApiOperation({ summary: 'Buscar nota de crédito' })
+  @ApiBody({
+    type: SearchCreditNoteRequestDto,
+    examples: {
+      default: {
+        value: {
+          caja: 300,
+          canal: 'TOTTEM',
+          fecha: '2025-12-17',
+          ip: '192.168.114.154',
+          proceso: 'reportes',
+          tienda: 'T001',
+          transaccion: 4567,
+          trazabilidad: '456',
+        },
+        description: 'Ejemplo de request para buscar nota de crédito',
+      },
+    },
+  })
+  @ApiResponse({
+    status: 201,
+    description: 'Nota de crédito encontrada exitosamente.',
+    type: SearchCreditNoteResponseDto,
+  })
+  @ApiResponse({
+    status: 401,
+    description: 'Unauthorized - API Key inválida o faltante',
+    schema: {
+      example: {
+        statusCode: 401,
+        message: 'Invalid x-api-key',
+        error: 'Unauthorized',
+      },
+    },
+  })
+  searchCreditNote(
+    @Body() body: SearchCreditNoteRequestDto,
+  ): SearchCreditNoteResponseDto {
+    return buildSearchCreditNote(body);
+  }
+
+  @Post('create-credit-note')
+  @HttpCode(HttpStatus.CREATED)
+  @ApiOperation({ summary: 'Crear nota de crédito' })
+  @ApiBody({
+    type: CreateCreditNoteRequestDto,
+    examples: {
+      default: {
+        value: {
+          caja: 300,
+          canal: 'TOTTEM',
+          fecha: '2025-12-17',
+          ip: '192.168.114.154',
+          motivo: 'ANULACIÓN',
+          proceso: 'reportes',
+          tienda: 'T001',
+          transaccion: 4567,
+          trazabilidad: '456',
+        },
+        description: 'Ejemplo de request para crear nota de crédito',
+      },
+    },
+  })
+  @ApiResponse({
+    status: 201,
+    description: 'Nota de crédito creada exitosamente.',
+    type: CreateCreditNoteResponseDto,
+  })
+  @ApiResponse({
+    status: 401,
+    description: 'Unauthorized - API Key inválida o faltante',
+    schema: {
+      example: {
+        statusCode: 401,
+        message: 'Invalid x-api-key',
+        error: 'Unauthorized',
+      },
+    },
+  })
+  createCreditNote(
+    @Body() body: CreateCreditNoteRequestDto,
+  ): CreateCreditNoteResponseDto {
+    return buildCreateCreditNote(body);
   }
 }
