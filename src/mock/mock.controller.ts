@@ -21,9 +21,6 @@ import {
   StoresRequestDto,
   StoresResponseDto,
   TiendaDto,
-  BenefitDto,
-  CallCustomerDto as StoreCallCustomerDto,
-  DeviceDto,
 } from './dto/stores.dto';
 import { AppConfigRequestDto, AppConfigResponseDto, ConfigDto } from './dto/app-config.dto';
 import {
@@ -194,9 +191,6 @@ import {
   PaymentDetailsDto,
   CallCustomerDto,
   OrderResponseDto,
-  BenefitDto,
-  DeviceDto,
-  StoreCallCustomerDto,
 )
 export class MockController {
   @Get('stores')

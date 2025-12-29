@@ -1,4 +1,4 @@
-import { BenefitDto, StoresResponseDto, TiendaDto } from '../dto/stores.dto';
+import { StoresResponseDto, TiendaDto } from '../dto/stores.dto';
 
 const allStores: TiendaDto[] = [
   {
@@ -8,27 +8,9 @@ const allStores: TiendaDto[] = [
     numberEpos: 104,
     address: 'Direccion 123',
     couponsInput: false,
-    benefit: [
-      {
-        id: 'bonus',
-        code: 'BONUS',
-        label: 'Programa Bonus',
-      }
-    ],
-    callCustomer: [
-      {
-        id: 'discollamadorManual',
-        code: 'DISC_LLAM_MAN',
-        label: 'Disco Llamador Manual',
-      }
-    ],
-    device: [
-      {
-        id: 'TOTEM.001',
-        code: 'TOTEM_001',
-        label: 'Tótem 001',
-      }
-    ],
+    benefit: ['bonus'],
+    callCustomer: ['discollamadorManual'],
+    device: ['TOTEM.001'],
     imagesVideos: [
       {
         id: 'cabecera',
@@ -55,42 +37,9 @@ const allStores: TiendaDto[] = [
     numberEpos: 5,
     address: 'Direccion 123',
     couponsInput: false,
-    benefit: [
-      {
-        id: 'bonus',
-        code: 'BONUS',
-        label: 'Programa Bonus',
-      },
-      {
-        id: 'prime',
-        code: 'PRIME',
-        label: 'Programa Prime',
-      }
-    ],
-    callCustomer: [
-      {
-        id: 'discollamadorManual',
-        code: 'DISC_LLAM_MAN',
-        label: 'Disco Llamador Manual',
-      },
-      {
-        id: 'telefonoSMS',
-        code: 'TEL_SMS',
-        label: 'Teléfono SMS',
-      },
-    ],
-    device: [
-      {
-        id: 'TOTEM.001',
-        code: 'TOTEM_001',
-        label: 'Tótem 001',
-      },
-      {
-        id: 'TOTEM.002',
-        code: 'TOTEM_002',
-        label: 'Tótem 002',
-      },
-    ],
+    benefit: ['bonus', 'prime'],
+    callCustomer: ['discollamadorManual', 'telefonoSMS'],
+    device: ['TOTEM.001', 'TOTEM.002'],
     imagesVideos: [
       {
         id: 'cabecera',
@@ -117,57 +66,9 @@ const allStores: TiendaDto[] = [
     numberEpos: 106,
     address: 'Direccion 123',
     couponsInput: false,
-    benefit: [
-      {
-        id: 'bonus',
-        code: 'BONUS',
-        label: 'Programa Bonus',
-      },
-      {
-        id: 'prime',
-        code: 'PRIME',
-        label: 'Programa Prime',
-      },
-      {
-        id: 'colaborador',
-        code: 'COLAB',
-        label: 'Programa Colaborador',
-      }
-    ],
-    callCustomer: [
-      {
-        id: 'discollamadorManual',
-        code: 'DISC_LLAM_MAN',
-        label: 'Disco Llamador Manual',
-      },
-      {
-        id: 'telefonoSMS',
-        code: 'TEL_SMS',
-        label: 'Teléfono SMS',
-      },
-      {
-        id: 'discollamadorAutomatico',
-        code: 'DISC_LLAM_AUT',
-        label: 'Disco Llamador Automatico',
-      },
-    ],
-    device: [
-      {
-        id: 'TOTEM.001',
-        code: 'TOTEM_001',
-        label: 'Tótem 001',
-      },
-      {
-        id: 'TOTEM.002',
-        code: 'TOTEM_002',
-        label: 'Tótem 002',
-      },
-      {
-        id: 'TOTEM.003',
-        code: 'TOTEM_003',
-        label: 'Tótem 003',
-      },
-    ],
+    benefit: ['bonus', 'prime', 'colaborador'],
+    callCustomer: ['discollamadorManual', 'telefonoSMS', 'discollamadorAutomatico'],
+    device: ['TOTEM.001', 'TOTEM.002', 'TOTEM.003'],
     imagesVideos: [
       {
         id: 'cabecera',
@@ -194,47 +95,9 @@ const allStores: TiendaDto[] = [
     numberEpos: 6,
     address: 'Direccion 123',
     couponsInput: false,
-    benefit: [
-      {
-        id: 'bonus',
-        code: 'BONUS',
-        label: 'Programa Bonus',
-      },
-      {
-        id: 'prime',
-        code: 'PRIME',
-        label: 'Programa Prime',
-      },
-      {
-        id: 'colaborador',
-        code: 'COLAB',
-        label: 'Programa Colaborador',
-      },
-      {
-        id: 'cupones',
-        code: 'COUPONS',
-        label: 'Cupones',
-      },
-    ],
-    callCustomer: [
-      {
-        id: 'discollamadorManual',
-        code: 'DISC_LLAM_MAN',
-        label: 'Disco Llamador Manual',
-      },
-      {
-        id: 'telefonoSMS',
-        code: 'TEL_SMS',
-        label: 'Teléfono SMS',
-      },
-    ],
-    device: [
-      {
-        id: 'TOTEM.001',
-        code: 'TOTEM_001',
-        label: 'Tótem 001',
-      },
-    ],
+    benefit: ['bonus', 'prime', 'colaborador', 'cupones'],
+    callCustomer: ['discollamadorManual', 'telefonoSMS'],
+    device: ['TOTEM.001'],
     imagesVideos: [
       {
         id: 'cabecera',
@@ -261,27 +124,9 @@ const allStores: TiendaDto[] = [
     numberEpos: 115,
     address: 'Direccion 123',
     couponsInput: false,
-    benefit: [
-      {
-        id: 'cupones',
-        code: 'COUPONS',
-        label: 'Cupones',
-      },
-    ],
-    callCustomer: [
-      {
-        id: 'telefonoSMS',
-        code: 'TEL_SMS',
-        label: 'Teléfono SMS',
-      },
-    ],
-    device: [
-      {
-        id: 'TOTEM.003',
-        code: 'TOTEM_003',
-        label: 'Tótem 003',
-      },
-    ],
+    benefit: ['cupones'],
+    callCustomer: ['telefonoSMS'],
+    device: ['TOTEM.003'],
     imagesVideos: [
       {
         id: 'cabecera',
@@ -308,47 +153,9 @@ const allStores: TiendaDto[] = [
     numberEpos: 101,
     address: 'Direccion 123',
     couponsInput: false,
-    benefit: [
-      {
-        id: 'colaborador',
-        code: 'COLAB',
-        label: 'Programa Colaborador',
-      },
-      {
-        id: 'cupones',
-        code: 'COUPONS',
-        label: 'Cupones',
-      },
-    ],
-    callCustomer: [
-      {
-        id: 'discollamadorAutomatico',
-        code: 'DISC_LLAM_AUT',
-        label: 'Disco Llamador Automatico',
-      },
-      {
-        id: 'discollamadorManual',
-        code: 'DISC_LLAM_MAN',
-        label: 'Disco Llamador Manual',
-      },
-      {
-        id: 'telefonoSMS',
-        code: 'TEL_SMS',
-        label: 'Teléfono SMS',
-      },
-    ],
-    device: [
-      {
-        id: 'TOTEM.002',
-        code: 'TOTEM_002',
-        label: 'Tótem 002',
-      },
-      {
-        id: 'TOTEM.003',
-        code: 'TOTEM_003',
-        label: 'Tótem 003',
-      },
-    ],
+    benefit: ['colaborador', 'cupones'],
+    callCustomer: ['discollamadorAutomatico', 'discollamadorManual', 'telefonoSMS'],
+    device: ['TOTEM.002', 'TOTEM.003'],
     imagesVideos: [
       {
         id: 'cabecera',

@@ -69,25 +69,28 @@ export class TiendaDto {
   couponsInput!: boolean;
 
   @ApiProperty({
-    type: () => [BenefitDto],
+    type: () => [String],
     description: 'Lista de beneficios',
+    example: ['bonus', 'prime', 'colaborador', 'cupones'],
     default: [],
   })
-  benefit!: BenefitDto[];
+  benefit!: string[];
 
   @ApiProperty({
-    type: () => [CallCustomerDto],
+    type: () => [String],
     description: 'Lista de información para llamar al cliente',
+    example: ['discollamadorManual', 'telefonoSMS', 'discollamadorAutomatico'],
     default: [],
   })
-  callCustomer!: CallCustomerDto[];
+  callCustomer!: string[];
 
   @ApiProperty({
-    type: () => [DeviceDto],
+    type: () => [String],
     description: 'Lista de dispositivos',
+    example: ['TOTEM.001', 'TOTEM.002', 'TOTEM.003'],
     default: [],
   })
-  device!: DeviceDto[];
+  device!: string[];
 
   @ApiProperty({
     type: () => [ImagenDto],
