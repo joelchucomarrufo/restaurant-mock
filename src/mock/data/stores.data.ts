@@ -13,51 +13,21 @@ const allStores: TiendaDto[] = [
         id: 'bonus',
         code: 'BONUS',
         label: 'Programa Bonus',
-      },
-      {
-        id: 'prime',
-        code: 'PRIME',
-        label: 'Programa Prime',
-      },
-      {
-        id: 'colaborador',
-        code: 'COLAB',
-        label: 'Programa Colaborador',
-      },
-      {
-        id: 'cupones',
-        code: 'COUPONS',
-        label: 'Cupones',
-      },
+      }
     ],
     callCustomer: [
       {
         id: 'discollamadorManual',
         code: 'DISC_LLAM_MAN',
         label: 'Disco Llamador Manual',
-      },
-      {
-        id: 'telefonoSMS',
-        code: 'TEL_SMS',
-        label: 'Teléfono SMS',
-      },
+      }
     ],
     device: [
       {
         id: 'TOTEM.001',
         code: 'TOTEM_001',
         label: 'Tótem 001',
-      },
-      {
-        id: 'TOTEM.002',
-        code: 'TOTEM_002',
-        label: 'Tótem 002',
-      },
-      {
-        id: 'TOTEM.003',
-        code: 'TOTEM_003',
-        label: 'Tótem 003',
-      },
+      }
     ],
     imagesVideos: [
       {
@@ -95,17 +65,7 @@ const allStores: TiendaDto[] = [
         id: 'prime',
         code: 'PRIME',
         label: 'Programa Prime',
-      },
-      {
-        id: 'colaborador',
-        code: 'COLAB',
-        label: 'Programa Colaborador',
-      },
-      {
-        id: 'cupones',
-        code: 'COUPONS',
-        label: 'Cupones',
-      },
+      }
     ],
     callCustomer: [
       {
@@ -129,11 +89,6 @@ const allStores: TiendaDto[] = [
         id: 'TOTEM.002',
         code: 'TOTEM_002',
         label: 'Tótem 002',
-      },
-      {
-        id: 'TOTEM.003',
-        code: 'TOTEM_003',
-        label: 'Tótem 003',
       },
     ],
     imagesVideos: [
@@ -177,12 +132,7 @@ const allStores: TiendaDto[] = [
         id: 'colaborador',
         code: 'COLAB',
         label: 'Programa Colaborador',
-      },
-      {
-        id: 'cupones',
-        code: 'COUPONS',
-        label: 'Cupones',
-      },
+      }
     ],
     callCustomer: [
       {
@@ -194,6 +144,11 @@ const allStores: TiendaDto[] = [
         id: 'telefonoSMS',
         code: 'TEL_SMS',
         label: 'Teléfono SMS',
+      },
+      {
+        id: 'discollamadorAutomatico',
+        code: 'DISC_LLAM_AUT',
+        label: 'Disco Llamador Automatico',
       },
     ],
     device: [
@@ -279,16 +234,6 @@ const allStores: TiendaDto[] = [
         code: 'TOTEM_001',
         label: 'Tótem 001',
       },
-      {
-        id: 'TOTEM.002',
-        code: 'TOTEM_002',
-        label: 'Tótem 002',
-      },
-      {
-        id: 'TOTEM.003',
-        code: 'TOTEM_003',
-        label: 'Tótem 003',
-      },
     ],
     imagesVideos: [
       {
@@ -318,21 +263,6 @@ const allStores: TiendaDto[] = [
     couponsInput: false,
     benefit: [
       {
-        id: 'bonus',
-        code: 'BONUS',
-        label: 'Programa Bonus',
-      },
-      {
-        id: 'prime',
-        code: 'PRIME',
-        label: 'Programa Prime',
-      },
-      {
-        id: 'colaborador',
-        code: 'COLAB',
-        label: 'Programa Colaborador',
-      },
-      {
         id: 'cupones',
         code: 'COUPONS',
         label: 'Cupones',
@@ -340,27 +270,12 @@ const allStores: TiendaDto[] = [
     ],
     callCustomer: [
       {
-        id: 'discollamadorManual',
-        code: 'DISC_LLAM_MAN',
-        label: 'Disco Llamador Manual',
-      },
-      {
         id: 'telefonoSMS',
         code: 'TEL_SMS',
         label: 'Teléfono SMS',
       },
     ],
     device: [
-      {
-        id: 'TOTEM.001',
-        code: 'TOTEM_001',
-        label: 'Tótem 001',
-      },
-      {
-        id: 'TOTEM.002',
-        code: 'TOTEM_002',
-        label: 'Tótem 002',
-      },
       {
         id: 'TOTEM.003',
         code: 'TOTEM_003',
@@ -395,16 +310,6 @@ const allStores: TiendaDto[] = [
     couponsInput: false,
     benefit: [
       {
-        id: 'bonus',
-        code: 'BONUS',
-        label: 'Programa Bonus',
-      },
-      {
-        id: 'prime',
-        code: 'PRIME',
-        label: 'Programa Prime',
-      },
-      {
         id: 'colaborador',
         code: 'COLAB',
         label: 'Programa Colaborador',
@@ -417,6 +322,11 @@ const allStores: TiendaDto[] = [
     ],
     callCustomer: [
       {
+        id: 'discollamadorAutomatico',
+        code: 'DISC_LLAM_AUT',
+        label: 'Disco Llamador Automatico',
+      },
+      {
         id: 'discollamadorManual',
         code: 'DISC_LLAM_MAN',
         label: 'Disco Llamador Manual',
@@ -428,11 +338,6 @@ const allStores: TiendaDto[] = [
       },
     ],
     device: [
-      {
-        id: 'TOTEM.001',
-        code: 'TOTEM_001',
-        label: 'Tótem 001',
-      },
       {
         id: 'TOTEM.002',
         code: 'TOTEM_002',
