@@ -1,4 +1,4 @@
-import { StoresResponseDto, TiendaDto } from '../dto/stores.dto';
+import { BenefitDto, StoresResponseDto, TiendaDto } from '../dto/stores.dto';
 
 const allStores: TiendaDto[] = [
   {
@@ -8,12 +8,55 @@ const allStores: TiendaDto[] = [
     numberEpos: 104,
     address: 'Direccion 123',
     couponsInput: false,
-    benefit: [],
-    callCustomer: [],
+    benefit: [
+      {
+        id: 'bonus',
+        code: 'BONUS',
+        label: 'Programa Bonus',
+      },
+      {
+        id: 'prime',
+        code: 'PRIME',
+        label: 'Programa Prime',
+      },
+      {
+        id: 'colaborador',
+        code: 'COLAB',
+        label: 'Programa Colaborador',
+      },
+      {
+        id: 'cupones',
+        code: 'COUPONS',
+        label: 'Cupones',
+      },
+    ],
+    callCustomer: [
+      {
+        id: 'discollamadorManual',
+        code: 'DISC_LLAM_MAN',
+        label: 'Disco Llamador Manual',
+      },
+      {
+        id: 'telefonoSMS',
+        code: 'TEL_SMS',
+        label: 'Teléfono SMS',
+      },
+    ],
     device: [
       {
-        id: 'DEVICE001',
-        description: 'Dispositivo Principal',
+        id: 'TOTEM.001',
+        code: 'TOTEM_001',
+        label: 'Tótem 001',
+      },
+      {
+        id: 'TOTEM.002',
+        code: 'TOTEM_002',
+        label: 'Tótem 002',
+      },
+      {
+        id: 'TOTEM.003',
+        code: 'TOTEM_003',
+        label: 'Tótem 003',
       },
     ],
     imagesVideos: [
@@ -42,12 +85,55 @@ const allStores: TiendaDto[] = [
     numberEpos: 5,
     address: 'Direccion 123',
     couponsInput: false,
-    benefit: [],
-    callCustomer: [],
+    benefit: [
+      {
+        id: 'bonus',
+        code: 'BONUS',
+        label: 'Programa Bonus',
+      },
+      {
+        id: 'prime',
+        code: 'PRIME',
+        label: 'Programa Prime',
+      },
+      {
+        id: 'colaborador',
+        code: 'COLAB',
+        label: 'Programa Colaborador',
+      },
+      {
+        id: 'cupones',
+        code: 'COUPONS',
+        label: 'Cupones',
+      },
+    ],
+    callCustomer: [
+      {
+        id: 'discollamadorManual',
+        code: 'DISC_LLAM_MAN',
+        label: 'Disco Llamador Manual',
+      },
+      {
+        id: 'telefonoSMS',
+        code: 'TEL_SMS',
+        label: 'Teléfono SMS',
+      },
+    ],
     device: [
       {
-        id: 'DEVICE002',
-        description: 'Dispositivo Principal',
+        id: 'TOTEM.001',
+        code: 'TOTEM_001',
+        label: 'Tótem 001',
+      },
+      {
+        id: 'TOTEM.002',
+        code: 'TOTEM_002',
+        label: 'Tótem 002',
+      },
+      {
+        id: 'TOTEM.003',
+        code: 'TOTEM_003',
+        label: 'Tótem 003',
       },
     ],
     imagesVideos: [
@@ -76,12 +162,55 @@ const allStores: TiendaDto[] = [
     numberEpos: 106,
     address: 'Direccion 123',
     couponsInput: false,
-    benefit: [],
-    callCustomer: [],
+    benefit: [
+      {
+        id: 'bonus',
+        code: 'BONUS',
+        label: 'Programa Bonus',
+      },
+      {
+        id: 'prime',
+        code: 'PRIME',
+        label: 'Programa Prime',
+      },
+      {
+        id: 'colaborador',
+        code: 'COLAB',
+        label: 'Programa Colaborador',
+      },
+      {
+        id: 'cupones',
+        code: 'COUPONS',
+        label: 'Cupones',
+      },
+    ],
+    callCustomer: [
+      {
+        id: 'discollamadorManual',
+        code: 'DISC_LLAM_MAN',
+        label: 'Disco Llamador Manual',
+      },
+      {
+        id: 'telefonoSMS',
+        code: 'TEL_SMS',
+        label: 'Teléfono SMS',
+      },
+    ],
     device: [
       {
-        id: 'DEVICE003',
-        description: 'Dispositivo Principal',
+        id: 'TOTEM.001',
+        code: 'TOTEM_001',
+        label: 'Tótem 001',
+      },
+      {
+        id: 'TOTEM.002',
+        code: 'TOTEM_002',
+        label: 'Tótem 002',
+      },
+      {
+        id: 'TOTEM.003',
+        code: 'TOTEM_003',
+        label: 'Tótem 003',
       },
     ],
     imagesVideos: [
@@ -110,12 +239,55 @@ const allStores: TiendaDto[] = [
     numberEpos: 6,
     address: 'Direccion 123',
     couponsInput: false,
-    benefit: [],
-    callCustomer: [],
+    benefit: [
+      {
+        id: 'bonus',
+        code: 'BONUS',
+        label: 'Programa Bonus',
+      },
+      {
+        id: 'prime',
+        code: 'PRIME',
+        label: 'Programa Prime',
+      },
+      {
+        id: 'colaborador',
+        code: 'COLAB',
+        label: 'Programa Colaborador',
+      },
+      {
+        id: 'cupones',
+        code: 'COUPONS',
+        label: 'Cupones',
+      },
+    ],
+    callCustomer: [
+      {
+        id: 'discollamadorManual',
+        code: 'DISC_LLAM_MAN',
+        label: 'Disco Llamador Manual',
+      },
+      {
+        id: 'telefonoSMS',
+        code: 'TEL_SMS',
+        label: 'Teléfono SMS',
+      },
+    ],
     device: [
       {
-        id: 'DEVICE004',
-        description: 'Dispositivo Principal',
+        id: 'TOTEM.001',
+        code: 'TOTEM_001',
+        label: 'Tótem 001',
+      },
+      {
+        id: 'TOTEM.002',
+        code: 'TOTEM_002',
+        label: 'Tótem 002',
+      },
+      {
+        id: 'TOTEM.003',
+        code: 'TOTEM_003',
+        label: 'Tótem 003',
       },
     ],
     imagesVideos: [
@@ -144,9 +316,57 @@ const allStores: TiendaDto[] = [
     numberEpos: 115,
     address: 'Direccion 123',
     couponsInput: false,
-    benefit: [],
-    callCustomer: [],
-    device: [],
+    benefit: [
+      {
+        id: 'bonus',
+        code: 'BONUS',
+        label: 'Programa Bonus',
+      },
+      {
+        id: 'prime',
+        code: 'PRIME',
+        label: 'Programa Prime',
+      },
+      {
+        id: 'colaborador',
+        code: 'COLAB',
+        label: 'Programa Colaborador',
+      },
+      {
+        id: 'cupones',
+        code: 'COUPONS',
+        label: 'Cupones',
+      },
+    ],
+    callCustomer: [
+      {
+        id: 'discollamadorManual',
+        code: 'DISC_LLAM_MAN',
+        label: 'Disco Llamador Manual',
+      },
+      {
+        id: 'telefonoSMS',
+        code: 'TEL_SMS',
+        label: 'Teléfono SMS',
+      },
+    ],
+    device: [
+      {
+        id: 'TOTEM.001',
+        code: 'TOTEM_001',
+        label: 'Tótem 001',
+      },
+      {
+        id: 'TOTEM.002',
+        code: 'TOTEM_002',
+        label: 'Tótem 002',
+      },
+      {
+        id: 'TOTEM.003',
+        code: 'TOTEM_003',
+        label: 'Tótem 003',
+      },
+    ],
     imagesVideos: [
       {
         id: 'cabecera',
@@ -173,12 +393,55 @@ const allStores: TiendaDto[] = [
     numberEpos: 101,
     address: 'Direccion 123',
     couponsInput: false,
-    benefit: [],
-    callCustomer: [],
+    benefit: [
+      {
+        id: 'bonus',
+        code: 'BONUS',
+        label: 'Programa Bonus',
+      },
+      {
+        id: 'prime',
+        code: 'PRIME',
+        label: 'Programa Prime',
+      },
+      {
+        id: 'colaborador',
+        code: 'COLAB',
+        label: 'Programa Colaborador',
+      },
+      {
+        id: 'cupones',
+        code: 'COUPONS',
+        label: 'Cupones',
+      },
+    ],
+    callCustomer: [
+      {
+        id: 'discollamadorManual',
+        code: 'DISC_LLAM_MAN',
+        label: 'Disco Llamador Manual',
+      },
+      {
+        id: 'telefonoSMS',
+        code: 'TEL_SMS',
+        label: 'Teléfono SMS',
+      },
+    ],
     device: [
       {
-        id: 'DEVICE005',
-        description: 'Dispositivo Principal',
+        id: 'TOTEM.001',
+        code: 'TOTEM_001',
+        label: 'Tótem 001',
+      },
+      {
+        id: 'TOTEM.002',
+        code: 'TOTEM_002',
+        label: 'Tótem 002',
+      },
+      {
+        id: 'TOTEM.003',
+        code: 'TOTEM_003',
+        label: 'Tótem 003',
       },
     ],
     imagesVideos: [

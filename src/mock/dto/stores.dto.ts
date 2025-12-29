@@ -2,27 +2,36 @@ import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { ImagenDto } from './shared.dto';
 
 export class BenefitDto {
-  @ApiProperty({ example: 'BONUS', description: 'Tipo de beneficio' })
-  type!: string;
+  @ApiProperty({ example: 'bonus', description: 'ID del beneficio' })
+  id!: string;
 
-  @ApiPropertyOptional({ example: '123456', description: 'Código del beneficio' })
-  code?: string;
+  @ApiProperty({ example: 'BONUS', description: 'Código del beneficio' })
+  code!: string;
+
+  @ApiProperty({ example: 'Programa Bonus', description: 'Etiqueta del beneficio' })
+  label!: string;
 }
 
 export class CallCustomerDto {
-  @ApiProperty({ example: '987654321', description: 'Número de teléfono' })
-  phone!: string;
+  @ApiProperty({ example: 'discollamadorManual', description: 'ID del método de llamada' })
+  id!: string;
 
-  @ApiPropertyOptional({ example: 'Juan Pérez', description: 'Nombre del cliente' })
-  name?: string;
+  @ApiProperty({ example: 'DISC_LLAM_MAN', description: 'Código del método de llamada' })
+  code!: string;
+
+  @ApiProperty({ example: 'Disco Llamador Manual', description: 'Etiqueta del método de llamada' })
+  label!: string;
 }
 
 export class DeviceDto {
-  @ApiProperty({ example: 'DEVICE001', description: 'ID del dispositivo' })
+  @ApiProperty({ example: 'TOTEM.001', description: 'ID del dispositivo' })
   id!: string;
 
-  @ApiPropertyOptional({ example: 'Dispositivo Principal', description: 'Descripción del dispositivo' })
-  description?: string;
+  @ApiProperty({ example: 'TOTEM_001', description: 'Código del dispositivo' })
+  code!: string;
+
+  @ApiProperty({ example: 'Tótem 001', description: 'Etiqueta del dispositivo' })
+  label!: string;
 }
 
 export class TiendaDto {
