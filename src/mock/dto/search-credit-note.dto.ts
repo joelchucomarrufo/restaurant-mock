@@ -102,3 +102,6 @@ export class SearchCreditNoteResponseDto {
   @ApiProperty({ example: '300', description: 'Código de caja' })
   cashRegister!: string;
 }
+
+
+

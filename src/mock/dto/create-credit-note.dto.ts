@@ -92,3 +92,6 @@ export class CreateCreditNoteResponseDto {
   @ApiProperty({ example: '456', description: 'Código de trazabilidad' })
   trazabilidad!: string;
 }
+
+
+

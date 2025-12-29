@@ -17,7 +17,14 @@ import {
 } from '@nestjs/swagger';
 import { ApiKeyGuard } from './guards/api-key.guard';
 import { Public } from './decorators/public.decorator';
-import { StoresRequestDto, StoresResponseDto, TiendaDto } from './dto/stores.dto';
+import {
+  StoresRequestDto,
+  StoresResponseDto,
+  TiendaDto,
+  BenefitDto,
+  CallCustomerDto as StoreCallCustomerDto,
+  DeviceDto,
+} from './dto/stores.dto';
 import { AppConfigRequestDto, AppConfigResponseDto, ConfigDto } from './dto/app-config.dto';
 import {
   LoginUsernameRequestDto,
@@ -76,10 +83,41 @@ import { sectionsMockData } from './data/sections.data';
 import { detailSectionsMockData } from './data/detail-sections.data';
 import { loyaltiMockData } from './data/loyalti.data';
 import { checkoutProductsMockData } from './data/checkout-products.data';
+import { storeWorldsMockData } from './data/store-worlds.data';
+import { customerBenefitMockData } from './data/customer-benefit.data';
+import { rucMockData } from './data/ruc.data';
+import { checkoutMockData } from './data/checkout.data';
+import { billingMockData } from './data/billing.data';
 import { buildTotalReport } from './builders/total-report.builder';
 import { buildMovementReport } from './builders/movement-report.builder';
 import { buildSearchCreditNote } from './builders/search-credit-note.builder';
 import { buildCreateCreditNote } from './builders/create-credit-note.builder';
+import {
+  StoreWorldsRequestDto,
+  StoreWorldsResponseDto,
+  WorldDto,
+  DishDto,
+} from './dto/store-worlds.dto';
+import {
+  CustomerBenefitRequestDto,
+  CustomerBenefitResponseDto,
+  BenefitRequestDto,
+  CouponDto,
+} from './dto/customer-benefit.dto';
+import { RucRequestDto, RucResponseDto } from './dto/ruc.dto';
+import {
+  CheckoutRequestDto,
+  CheckoutResponseDto,
+  CheckoutProductRequestDto,
+  OrderDto,
+} from './dto/checkout.dto';
+import {
+  BillingRequestDto,
+  BillingResponseDto,
+  PaymentDetailsDto,
+  CallCustomerDto,
+  OrderResponseDto,
+} from './dto/billing.dto';
 
 @ApiTags('Tottem Mock')
 @Controller('queries')
@@ -104,6 +142,12 @@ import { buildCreateCreditNote } from './builders/create-credit-note.builder';
   ReportSalesRequestDto,
   SearchCreditNoteRequestDto,
   CreateCreditNoteRequestDto,
+  StoreWorldsRequestDto,
+  CustomerBenefitRequestDto,
+  RucRequestDto,
+  CheckoutRequestDto,
+  CheckoutProductRequestDto,
+  BillingRequestDto,
   // Response DTOs
   StoresResponseDto,
   AppConfigResponseDto,
@@ -117,6 +161,11 @@ import { buildCreateCreditNote } from './builders/create-credit-note.builder';
   HealthResponseDto,
   SearchCreditNoteResponseDto,
   CreateCreditNoteResponseDto,
+  StoreWorldsResponseDto,
+  CustomerBenefitResponseDto,
+  RucResponseDto,
+  CheckoutResponseDto,
+  BillingResponseDto,
   // Nested DTOs
   TiendaDto,
   ImagenDto,
@@ -137,24 +186,23 @@ import { buildCreateCreditNote } from './builders/create-credit-note.builder';
   ClientResponseDto,
   BankPromotionResponseDto,
   ReceiptAttributesResponseDto,
+  WorldDto,
+  DishDto,
+  BenefitRequestDto,
+  CouponDto,
+  OrderDto,
+  PaymentDetailsDto,
+  CallCustomerDto,
+  OrderResponseDto,
+  BenefitDto,
+  DeviceDto,
+  StoreCallCustomerDto,
 )
 export class MockController {
-  @Post('stores')
-  @HttpCode(HttpStatus.CREATED)
+  @Get('stores')
   @ApiOperation({ summary: 'Consultar tiendas' })
-  @ApiBody({
-    type: StoresRequestDto,
-    description: 'Body vacío o objeto vacío',
-    required: false,
-    examples: {
-      empty: {
-        value: {},
-        description: 'Body vacío',
-      },
-    },
-  })
   @ApiResponse({
-    status: 201,
+    status: 200,
     description: 'Listado de tiendas mockeado.',
     type: StoresResponseDto,
   })
@@ -169,28 +217,14 @@ export class MockController {
       },
     },
   })
-  consultarTiendas(
-    @Body() _body: StoresRequestDto,
-  ): StoresResponseDto {
+  consultarTiendas(): StoresResponseDto {
     return storesMockData;
   }
 
-  @Post('app-config')
-  @HttpCode(HttpStatus.CREATED)
+  @Get('app-config')
   @ApiOperation({ summary: 'Config app' })
-  @ApiBody({
-    type: AppConfigRequestDto,
-    examples: {
-      default: {
-        value: {
-          proceso: 'configuracionapp',
-        },
-        description: 'Ejemplo de request para config app',
-      },
-    },
-  })
   @ApiResponse({
-    status: 201,
+    status: 200,
     description: 'Configuración de la aplicación.',
     type: AppConfigResponseDto,
   })
@@ -205,12 +239,12 @@ export class MockController {
       },
     },
   })
-  configApp(@Body() _body: AppConfigRequestDto): AppConfigResponseDto {
+  configApp(): AppConfigResponseDto {
     return appConfigMockData;
   }
 
   @Post('login-username')
-  @HttpCode(HttpStatus.CREATED)
+  @HttpCode(HttpStatus.OK)
   @ApiOperation({ summary: 'Login por username' })
   @ApiBody({
     type: LoginUsernameRequestDto,
@@ -236,7 +270,7 @@ export class MockController {
     },
   })
   @ApiResponse({
-    status: 201,
+    status: 200,
     description: 'Login exitoso.',
     type: LoginUsernameResponseDto,
   })
@@ -258,7 +292,7 @@ export class MockController {
   }
 
   @Post('sections')
-  @HttpCode(HttpStatus.CREATED)
+  @HttpCode(HttpStatus.OK)
   @ApiOperation({ summary: 'Consultar secciones' })
   @ApiBody({
     type: SectionsRequestDto,
@@ -277,7 +311,7 @@ export class MockController {
     },
   })
   @ApiResponse({
-    status: 201,
+    status: 200,
     description: 'Listado de secciones mockeado.',
     type: SectionsResponseDto,
   })
@@ -305,7 +339,7 @@ export class MockController {
   }
 
   @Post('detail-sections')
-  @HttpCode(HttpStatus.CREATED)
+  @HttpCode(HttpStatus.OK)
   @ApiOperation({ summary: 'Consultar detalle de sección' })
   @ApiBody({
     type: DetailSectionsRequestDto,
@@ -325,7 +359,7 @@ export class MockController {
     },
   })
   @ApiResponse({
-    status: 201,
+    status: 200,
     description: 'Detalle de sección con categorías y productos.',
     type: DetailSectionsResponseDto,
   })
@@ -354,7 +388,7 @@ export class MockController {
   }
 
   @Post('loyalti')
-  @HttpCode(HttpStatus.CREATED)
+  @HttpCode(HttpStatus.OK)
   @ApiOperation({ summary: 'Consultar bonus (loyalty)' })
   @ApiBody({
     type: LoyaltiRequestDto,
@@ -374,7 +408,7 @@ export class MockController {
     },
   })
   @ApiResponse({
-    status: 201,
+    status: 200,
     description: 'Información del bonus del cliente.',
     type: LoyaltiResponseDto,
   })
@@ -403,7 +437,7 @@ export class MockController {
   }
 
   @Post('checkout-products')
-  @HttpCode(HttpStatus.CREATED)
+  @HttpCode(HttpStatus.OK)
   @ApiOperation({ summary: 'Checkout de productos' })
   @ApiBody({
     type: CheckoutProductsRequestDto,
@@ -454,7 +488,7 @@ export class MockController {
     },
   })
   @ApiResponse({
-    status: 201,
+    status: 200,
     description: 'Checkout procesado exitosamente.',
     type: CheckoutProductsResponseDto,
   })
@@ -469,7 +503,7 @@ export class MockController {
       },
     },
   })
-  checkout(
+  checkoutProducts(
     @Body() body: CheckoutProductsRequestDto,
   ): CheckoutProductsResponseDto {
     return {
@@ -501,7 +535,7 @@ export class MockController {
   }
 
   @Post('sales-report-by-store')
-  @HttpCode(HttpStatus.CREATED)
+  @HttpCode(HttpStatus.OK)
   @ApiOperation({ summary: 'Reporte de ventas totales por tienda' })
   @ApiBody({
     type: SalesReportByStoreRequestDto,
@@ -520,7 +554,7 @@ export class MockController {
     },
   })
   @ApiResponse({
-    status: 201,
+    status: 200,
     description: 'Reporte de ventas totales generado exitosamente.',
     type: TotalReportResponseDto,
   })
@@ -542,7 +576,7 @@ export class MockController {
   }
 
   @Post('report-sales')
-  @HttpCode(HttpStatus.CREATED)
+  @HttpCode(HttpStatus.OK)
   @ApiOperation({ summary: 'Reporte de movimientos de ventas' })
   @ApiBody({
     type: ReportSalesRequestDto,
@@ -561,7 +595,7 @@ export class MockController {
     },
   })
   @ApiResponse({
-    status: 201,
+    status: 200,
     description: 'Lista de movimientos de ventas generada exitosamente.',
     type: MovementReportResponseItemDto,
     isArray: true,
@@ -588,11 +622,11 @@ export class MockController {
   @ApiOperation({ summary: 'Health check del servicio mock' })
   @ApiResponse({ status: 200, type: HealthResponseDto })
   health(): HealthResponseDto {
-    return { ok: 'serv restaurant' };
+    return { ok: 'serv restaurnat' };
   }
 
   @Post('search-credit-note')
-  @HttpCode(HttpStatus.CREATED)
+  @HttpCode(HttpStatus.OK)
   @ApiOperation({ summary: 'Buscar nota de crédito' })
   @ApiBody({
     type: SearchCreditNoteRequestDto,
@@ -613,7 +647,7 @@ export class MockController {
     },
   })
   @ApiResponse({
-    status: 201,
+    status: 200,
     description: 'Nota de crédito encontrada exitosamente.',
     type: SearchCreditNoteResponseDto,
   })
@@ -635,7 +669,7 @@ export class MockController {
   }
 
   @Post('create-credit-note')
-  @HttpCode(HttpStatus.CREATED)
+  @HttpCode(HttpStatus.OK)
   @ApiOperation({ summary: 'Crear nota de crédito' })
   @ApiBody({
     type: CreateCreditNoteRequestDto,
@@ -657,7 +691,7 @@ export class MockController {
     },
   })
   @ApiResponse({
-    status: 201,
+    status: 200,
     description: 'Nota de crédito creada exitosamente.',
     type: CreateCreditNoteResponseDto,
   })
@@ -676,5 +710,255 @@ export class MockController {
     @Body() body: CreateCreditNoteRequestDto,
   ): CreateCreditNoteResponseDto {
     return buildCreateCreditNote(body);
+  }
+
+  @Post('store-worlds')
+  @HttpCode(HttpStatus.OK)
+  @ApiOperation({ summary: 'Obtener mundos y platos de una tienda' })
+  @ApiBody({
+    type: StoreWorldsRequestDto,
+    examples: {
+      default: {
+        value: {
+          store: 'T104',
+          device: 'DEVICE001',
+        },
+        description: 'Ejemplo de request para obtener mundos y platos',
+      },
+    },
+  })
+  @ApiResponse({
+    status: 200,
+    description: 'Mundos y platos obtenidos exitosamente.',
+    type: StoreWorldsResponseDto,
+  })
+  @ApiResponse({
+    status: 401,
+    description: 'Unauthorized - API Key inválida o faltante',
+    schema: {
+      example: {
+        statusCode: 401,
+        message: 'Invalid x-api-key',
+        error: 'Unauthorized',
+      },
+    },
+  })
+  storeWorlds(
+    @Body() body: StoreWorldsRequestDto,
+  ): StoreWorldsResponseDto {
+    return {
+      ...storeWorldsMockData,
+      store: body.store,
+      device: body.device,
+    };
+  }
+
+  @Post('customer-benefit')
+  @HttpCode(HttpStatus.OK)
+  @ApiOperation({ summary: 'Consultar beneficios del cliente' })
+  @ApiBody({
+    type: CustomerBenefitRequestDto,
+    examples: {
+      default: {
+        value: {
+          store: 'T104',
+          device: 'DEVICE001',
+          documentType: 'DNI',
+          document: '12345678',
+          benefit: [
+            {
+              type: 'BONUS',
+              code: '123456',
+            },
+          ],
+        },
+        description: 'Ejemplo de request para consultar beneficios',
+      },
+    },
+  })
+  @ApiResponse({
+    status: 200,
+    description: 'Beneficios del cliente obtenidos exitosamente.',
+    type: CustomerBenefitResponseDto,
+  })
+  @ApiResponse({
+    status: 401,
+    description: 'Unauthorized - API Key inválida o faltante',
+    schema: {
+      example: {
+        statusCode: 401,
+        message: 'Invalid x-api-key',
+        error: 'Unauthorized',
+      },
+    },
+  })
+  customerBenefit(
+    @Body() body: CustomerBenefitRequestDto,
+  ): CustomerBenefitResponseDto {
+    return {
+      ...customerBenefitMockData,
+      store: body.store,
+      device: body.device,
+    };
+  }
+
+  @Post('ruc')
+  @HttpCode(HttpStatus.OK)
+  @ApiOperation({ summary: 'Validar RUC' })
+  @ApiBody({
+    type: RucRequestDto,
+    examples: {
+      default: {
+        value: {
+          store: 'T104',
+          device: 'DEVICE001',
+          ruc: '20123456789',
+          companyName: 'Empresa Ejemplo S.A.C.',
+        },
+        description: 'Ejemplo de request para validar RUC',
+      },
+    },
+  })
+  @ApiResponse({
+    status: 200,
+    description: 'RUC validado exitosamente.',
+    type: RucResponseDto,
+  })
+  @ApiResponse({
+    status: 401,
+    description: 'Unauthorized - API Key inválida o faltante',
+    schema: {
+      example: {
+        statusCode: 401,
+        message: 'Invalid x-api-key',
+        error: 'Unauthorized',
+      },
+    },
+  })
+  ruc(@Body() body: RucRequestDto): RucResponseDto {
+    return {
+      ...rucMockData,
+      store: body.store,
+      device: body.device,
+      ruc: body.ruc,
+      companyName: body.companyName,
+    };
+  }
+
+  @Post('checkout')
+  @HttpCode(HttpStatus.OK)
+  @ApiOperation({ summary: 'Procesar checkout' })
+  @ApiBody({
+    type: CheckoutRequestDto,
+    examples: {
+      default: {
+        value: {
+          store: 'T104',
+          device: 'DEVICE001',
+          ipEpos: '10.166.218.228:8444',
+          ipStationPrincipal: '10.166.218.228:8444',
+          products: [
+            {
+              cantidad: 4,
+              ean: '7757419000086',
+              idSeccion: '003',
+              seccion: 'Cubiertos',
+            },
+          ],
+          customer: {
+            correoBonus: 'GLORIA_702@HOTMAIL.COM',
+            loyalty: {
+              numeroDocumento: '41254288',
+              tipoDocumento: 1,
+            },
+            numeroDocumento: null,
+            promocionBancaria: [
+              {
+                BIN: null,
+                id_mp: 10,
+              },
+            ],
+            razonSocial: 'SIN NOMBRE',
+            ruc: null,
+            tarjetaBonus: '7027661000027531363',
+            tipoDocumento: null,
+          },
+        },
+        description: 'Ejemplo de request para checkout',
+      },
+    },
+  })
+  @ApiResponse({
+    status: 200,
+    description: 'Checkout procesado exitosamente.',
+    type: CheckoutResponseDto,
+  })
+  @ApiResponse({
+    status: 401,
+    description: 'Unauthorized - API Key inválida o faltante',
+    schema: {
+      example: {
+        statusCode: 401,
+        message: 'Invalid x-api-key',
+        error: 'Unauthorized',
+      },
+    },
+  })
+  checkout(@Body() body: CheckoutRequestDto): CheckoutResponseDto {
+    return {
+      ...checkoutMockData,
+      idCheckout: `checkout-${Date.now()}`,
+    };
+  }
+
+  @Post('billing')
+  @HttpCode(HttpStatus.OK)
+  @ApiOperation({ summary: 'Procesar facturación' })
+  @ApiBody({
+    type: BillingRequestDto,
+    examples: {
+      default: {
+        value: {
+          store: 'T104',
+          device: 'DEVICE001',
+          ipEpos: '10.166.218.228:8444',
+          idCheckout: 'fc2ee037-cf46-424c-afc2-1235462d50ef',
+          paymentDatails: {
+            method: 'CASH',
+            amount: 172.95,
+          },
+          callCustomer: {
+            phone: '987654321',
+            name: 'Juan Pérez',
+          },
+          deliveryMethod: 'DELIVERY',
+        },
+        description: 'Ejemplo de request para facturación',
+      },
+    },
+  })
+  @ApiResponse({
+    status: 200,
+    description: 'Facturación procesada exitosamente.',
+    type: BillingResponseDto,
+  })
+  @ApiResponse({
+    status: 401,
+    description: 'Unauthorized - API Key inválida o faltante',
+    schema: {
+      example: {
+        statusCode: 401,
+        message: 'Invalid x-api-key',
+        error: 'Unauthorized',
+      },
+    },
+  })
+  billing(@Body() body: BillingRequestDto): BillingResponseDto {
+    return {
+      ...billingMockData,
+      store: body.store,
+      device: body.device,
+      idCheckout: body.idCheckout,
+    };
   }
 }

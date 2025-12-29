@@ -13,8 +13,12 @@ export const loginUsernameMockData: LoginUsernameResponseDto = {
       id: 1,
       name: 'vinos',
     },
+    functions: {},
   },
 };
+
+
+
 
 
 

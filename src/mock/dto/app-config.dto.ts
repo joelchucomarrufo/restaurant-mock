@@ -20,17 +20,14 @@ export class AppConfigRequestDto {
 }
 
 export class AppConfigResponseDto {
-  @ApiProperty({
-    example: 'configuracionapp',
-    description: 'Proceso ejecutado',
-  })
-  proceso!: string;
+  @ApiProperty({ example: 1, description: 'ID de configuración' })
+  id!: number;
 
   @ApiProperty({
-    type: () => ConfigDto,
-    description: 'Configuración de la aplicación',
+    example: 'DDw3qqYLUBMq/AKNKB6CqISTLQBu0VpozkN5hy+grx0=',
+    description: 'Hash de la aplicación',
   })
-  config!: ConfigDto;
+  appHash!: string;
 }
 
 

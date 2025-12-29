@@ -23,6 +23,13 @@ export class UserDto {
     description: 'Información del proveedor',
   })
   provider!: ProviderDto;
+
+  @ApiProperty({
+    example: {},
+    description: 'Funciones del usuario',
+    default: {},
+  })
+  functions!: Record<string, any>;
 }
 
 export class LoginUsernameRequestDto {
