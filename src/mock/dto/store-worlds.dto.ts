@@ -1,37 +1,116 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 
-export class WorldDto {
-  @ApiProperty({ example: '001', description: 'ID del mundo' })
-  id!: string;
+export class CategoryDto {
+  @ApiProperty({ example: 1, description: 'ID de la categoría' })
+  id!: number;
 
-  @ApiProperty({ example: 'Mundo Principal', description: 'Nombre del mundo' })
+  @ApiProperty({ example: 'categoria1', description: 'Nombre de la categoría' })
+  name!: string;
+}
+
+export class WorldDto {
+  @ApiProperty({ example: 1, description: 'ID del mundo' })
+  id!: number;
+
+  @ApiProperty({ example: 'Fusión', description: 'Nombre del mundo' })
   name!: string;
 
-  @ApiPropertyOptional({ example: 'Descripción del mundo', description: 'Descripción' })
-  description?: string;
+  @ApiProperty({
+    example: 'https://takiplayer.com/cencosud/option_one.png',
+    description: 'URL de la imagen del mundo',
+  })
+  image!: string;
+
+  @ApiProperty({
+    type: () => [CategoryDto],
+    description: 'Lista de categorías',
+  })
+  categories!: CategoryDto[];
+}
+
+export class ProductDto {
+  @ApiProperty({ example: '22111111111', description: 'Código EAN del producto' })
+  ean!: string;
+
+  @ApiProperty({ example: 'producto1', description: 'Nombre del producto' })
+  name!: string;
+
+  @ApiProperty({ example: 8.5, description: 'Precio unitario del producto' })
+  unitPrice!: number;
 }
 
 export class DishDto {
-  @ApiProperty({ example: '7757419000086', description: 'Código EAN del plato' })
+  @ApiProperty({ example: '7755211000020', description: 'Código EAN del plato' })
   ean!: string;
 
-  @ApiProperty({ example: 'Plato Principal', description: 'Nombre del plato' })
+  @ApiProperty({ example: 'Churrasco con vegetales', description: 'Nombre del plato' })
   name!: string;
 
+  @ApiProperty({
+    example: 'Lorem ipsum dolor sit amet consectetur adipiscing elit curae maecenas.',
+    description: 'Detalles adicionales del plato',
+  })
+  adicionalDetails!: string;
+
+  @ApiProperty({ example: 8.5, description: 'Precio unitario del plato' })
+  unitPrice!: number;
+
   @ApiPropertyOptional({
-    example: 'SCeDSL6SDqVway6G8wpwm+anpHo7pNbx7be3meX87MFI8Jzx9r1VhNEXE/1pHrQMXzL5ZXOdHlIGiEXpMRjLWa9Nr0EOpGisgBT+NU84Ze4=',
-    description: 'URL codificada de la imagen',
+    example: null,
+    description: 'Stock disponible',
+    nullable: true,
+  })
+  stock!: number | null;
+
+  @ApiPropertyOptional({
+    example: 'https://takiplayer.com/cencosud/dish_one.png',
+    description: 'URL de la imagen del plato',
   })
   image?: string;
 
   @ApiPropertyOptional({
-    example: 'SCeDSL6SDqVway6G8wpwm+anpHo7pNbx7be3meX87MFI8Jzx9r1VhNEXE/1pHrQMXzL5ZXOdHlIGiEXpMRjLWa9Nr0EOpGisgBT+NU84Ze4=',
-    description: 'URL codificada de la imagen (alternativo)',
+    example: 'https://takiplayer.com/cencosud/dish_two.png',
+    description: 'URL de la imagen del plato (alternativo)',
   })
   imagen?: string;
 
-  @ApiProperty({ example: 25.50, description: 'Precio del plato' })
-  price!: number;
+  @ApiProperty({ example: true, description: 'Indica si tiene restricciones' })
+  restriction!: boolean;
+
+  @ApiPropertyOptional({
+    example: '23:00 - 06:00',
+    description: 'Rango de horas disponible',
+    nullable: true,
+  })
+  rangeHours!: string | null;
+
+  @ApiProperty({ example: 2, description: 'ID del mundo al que pertenece' })
+  idWorld!: number;
+
+  @ApiProperty({ example: 3, description: 'ID de la categoría' })
+  idCategory!: number;
+
+  @ApiProperty({ example: true, description: 'Indica si permite comentarios' })
+  comments!: boolean;
+
+  @ApiProperty({
+    type: () => [String],
+    example: ['sin sal', 'con sal', 'termino 1/2'],
+    description: 'Lista de preferencias de etiquetas',
+  })
+  tagPreferences!: string[];
+
+  @ApiProperty({ example: 'estacion1', description: 'Estación de cocina' })
+  cookingStation!: string;
+
+  @ApiProperty({ example: '12.123.342.32', description: 'IP de la estación' })
+  ipStation!: string;
+
+  @ApiProperty({
+    type: () => [ProductDto],
+    description: 'Lista de productos',
+  })
+  products!: ProductDto[];
 }
 
 export class StoreWorldsRequestDto {

@@ -94,6 +94,8 @@ import {
   StoreWorldsResponseDto,
   WorldDto,
   DishDto,
+  CategoryDto,
+  ProductDto,
 } from './dto/store-worlds.dto';
 import {
   CustomerBenefitRequestDto,
@@ -185,6 +187,8 @@ import {
   ReceiptAttributesResponseDto,
   WorldDto,
   DishDto,
+  CategoryDto,
+  ProductDto,
   BenefitRequestDto,
   CouponDto,
   OrderDto,

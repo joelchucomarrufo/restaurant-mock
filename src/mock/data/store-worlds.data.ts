@@ -1,33 +1,241 @@
 import { StoreWorldsResponseDto } from '../dto/store-worlds.dto';
 
 export const storeWorldsMockData: StoreWorldsResponseDto = {
-  store: 'T104',
-  device: 'DEVICE001',
-  ipStationPrincipal: '10.166.218.228:8444',
+  store: 'T101',
+  device: 'TOTEM.001',
+  ipStationPrincipal: '12.123.342.31',
   world: [
     {
-      id: '001',
-      name: 'Mundo Principal',
-      description: 'Mundo principal de la tienda',
+      id: 1,
+      name: 'Fusión',
+      image: 'https://takiplayer.com/cencosud/option_one.png',
+      categories: [
+        {
+          id: 1,
+          name: 'categoria1',
+        },
+        {
+          id: 2,
+          name: 'categoria2',
+        },
+      ],
     },
     {
-      id: '002',
-      name: 'Mundo Secundario',
-      description: 'Mundo secundario',
+      id: 2,
+      name: 'Grill',
+      image: 'https://takiplayer.com/cencosud/option_two.png',
+      categories: [
+        {
+          id: 3,
+          name: 'categoria3',
+        },
+        {
+          id: 4,
+          name: 'categoria4',
+        },
+      ],
+    },
+    {
+      id: 3,
+      name: 'Marino',
+      image: 'https://takiplayer.com/cencosud/option_three.png',
+      categories: [
+        {
+          id: 1,
+          name: 'categoria1',
+        },
+        {
+          id: 2,
+          name: 'categoria2',
+        },
+        {
+          id: 3,
+          name: 'categoria3',
+        },
+        {
+          id: 4,
+          name: 'categoria4',
+        },
+      ],
+    },
+    {
+      id: 4,
+      name: 'Pizzas',
+      image: 'https://takiplayer.com/cencosud/option_four.png',
+      categories: [
+        {
+          id: 1,
+          name: 'categoria1',
+        },
+        {
+          id: 2,
+          name: 'categoria2',
+        },
+        {
+          id: 3,
+          name: 'categoria3',
+        },
+        {
+          id: 4,
+          name: 'categoria4',
+        },
+        {
+          id: 5,
+          name: 'categoria5',
+        },
+        {
+          id: 6,
+          name: 'categoria6',
+        },
+      ],
+    },
+    {
+      id: 5,
+      name: 'Saludable',
+      image: 'https://takiplayer.com/cencosud/option_five.png',
+      categories: [
+        {
+          id: 5,
+          name: 'categoria5',
+        },
+        {
+          id: 6,
+          name: 'categoria6',
+        },
+      ],
+    },
+    {
+      id: 6,
+      name: 'Sándwich',
+      image: 'https://takiplayer.com/cencosud/option_six.png',
+      categories: [
+        {
+          id: 3,
+          name: 'categoria3',
+        },
+        {
+          id: 4,
+          name: 'categoria4',
+        },
+        {
+          id: 5,
+          name: 'categoria5',
+        },
+      ],
     },
   ],
   dishes: [
     {
-      ean: '7757419000086',
-      name: 'Plato Principal 1',
-      image: 'SCeDSL6SDqVway6G8wpwm+anpHo7pNbx7be3meX87MFI8Jzx9r1VhNEXE/1pHrQMXzL5ZXOdHlIGiEXpMRjLWa9Nr0EOpGisgBT+NU84Ze4=',
-      price: 25.50,
+      ean: '7755211000020',
+      name: 'Churrasco con vegetales',
+      adicionalDetails: 'Lorem ipsum dolor sit amet consectetur adipiscing elit curae maecenas.',
+      unitPrice: 8.5,
+      stock: null,
+      image: 'https://takiplayer.com/cencosud/dish_one.png',
+      restriction: true,
+      rangeHours: '23:00 - 06:00',
+      idWorld: 2,
+      idCategory: 3,
+      comments: true,
+      tagPreferences: ['sin sal', 'con sal', 'termino 1/2'],
+      cookingStation: 'estacion1',
+      ipStation: '12.123.342.32',
+      products: [
+        {
+          ean: '22111111111',
+          name: 'producto1',
+          unitPrice: 8.5,
+        },
+        {
+          ean: '22111111112',
+          name: 'producto2',
+          unitPrice: 8.5,
+        },
+      ],
     },
     {
-      ean: '7757419000024',
-      name: 'Plato Principal 2',
-      imagen: 'SCeDSL6SDqVway6G8wpwm+anpHo7pNbx7be3meX87MFI8Jzx9r1VhNEXE/1pHrQMColS3F4UfjCxJnuo/TbhOSQfjt+m2M9YixDHmU1mMz8=',
-      price: 30.00,
+      ean: '7755211000021',
+      name: 'Pasta al pesto',
+      adicionalDetails: 'Lorem ipsum dolor sit amet consectetur adipiscing elit curae maecenas.',
+      unitPrice: 8.5,
+      stock: null,
+      imagen: 'https://takiplayer.com/cencosud/dish_two.png',
+      restriction: false,
+      rangeHours: null,
+      idWorld: 1,
+      idCategory: 2,
+      comments: true,
+      tagPreferences: ['sin sal', 'con sal', 'termino 1/2'],
+      cookingStation: 'estacion1',
+      ipStation: '12.123.342.32',
+      products: [
+        {
+          ean: '22111111111',
+          name: 'producto1',
+          unitPrice: 8.5,
+        },
+        {
+          ean: '22111111112',
+          name: 'producto2',
+          unitPrice: 8.5,
+        },
+      ],
+    },
+    {
+      ean: '7755211000022',
+      name: 'Pizza de vegetales',
+      adicionalDetails: 'Lorem ipsum dolor sit amet consectetur adipiscing elit curae maecenas.',
+      unitPrice: 8.5,
+      stock: null,
+      image: 'https://takiplayer.com/cencosud/dish_three.png',
+      restriction: true,
+      rangeHours: '23:00 - 06:00',
+      idWorld: 4,
+      idCategory: 4,
+      comments: true,
+      tagPreferences: ['sin sal', 'con sal', 'termino 1/2'],
+      cookingStation: 'estacion1',
+      ipStation: '12.123.342.32',
+      products: [
+        {
+          ean: '22111111111',
+          name: 'producto1',
+          unitPrice: 8.5,
+        },
+        {
+          ean: '22111111112',
+          name: 'producto2',
+          unitPrice: 8.5,
+        },
+      ],
+    },
+    {
+      ean: '7755211000023',
+      name: '6 Ostras frescas',
+      adicionalDetails: 'Lorem ipsum dolor sit amet consectetur adipiscing elit curae maecenas.',
+      unitPrice: 8.5,
+      stock: null,
+      imagen: 'https://takiplayer.com/cencosud/dish_four.png',
+      restriction: false,
+      rangeHours: null,
+      idWorld: 3,
+      idCategory: 4,
+      comments: true,
+      tagPreferences: ['sin sal', 'con sal', 'termino 1/2'],
+      cookingStation: 'estacion1',
+      ipStation: '12.123.342.32',
+      products: [
+        {
+          ean: '22111111111',
+          name: 'producto1',
+          unitPrice: 8.5,
+        },
+        {
+          ean: '22111111112',
+          name: 'producto2',
+          unitPrice: 8.5,
+        },
+      ],
     },
   ],
 };
