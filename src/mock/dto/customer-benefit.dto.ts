@@ -70,3 +70,4 @@ export class CustomerBenefitResponseDto {
   })
   coupons!: CouponDto[];
 }
+

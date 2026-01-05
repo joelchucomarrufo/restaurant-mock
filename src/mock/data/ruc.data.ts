@@ -7,3 +7,4 @@ export const rucMockData: RucResponseDto = {
   companyName: 'Empresa Ejemplo S.A.C.',
   validationMessage: 'RUC válido y activo',
 };
+

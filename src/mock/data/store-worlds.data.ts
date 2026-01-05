@@ -130,7 +130,7 @@ export const storeWorldsMockData: StoreWorldsResponseDto = {
       name: 'Churrasco con vegetales',
       adicionalDetails: 'Lorem ipsum dolor sit amet consectetur adipiscing elit curae maecenas.',
       unitPrice: 8.5,
-      stock: null,
+      stock: 0,
       image: 'https://takiplayer.com/cencosud/dish_one.png',
       restriction: true,
       rangeHours: '23:00 - 06:00',
@@ -158,7 +158,7 @@ export const storeWorldsMockData: StoreWorldsResponseDto = {
       name: 'Pasta al pesto',
       adicionalDetails: 'Lorem ipsum dolor sit amet consectetur adipiscing elit curae maecenas.',
       unitPrice: 8.5,
-      stock: null,
+      stock: 3,
       imagen: 'https://takiplayer.com/cencosud/dish_two.png',
       restriction: false,
       rangeHours: null,
@@ -186,7 +186,7 @@ export const storeWorldsMockData: StoreWorldsResponseDto = {
       name: 'Pizza de vegetales',
       adicionalDetails: 'Lorem ipsum dolor sit amet consectetur adipiscing elit curae maecenas.',
       unitPrice: 8.5,
-      stock: null,
+      stock: 4,
       image: 'https://takiplayer.com/cencosud/dish_three.png',
       restriction: true,
       rangeHours: '23:00 - 06:00',
@@ -239,3 +239,4 @@ export const storeWorldsMockData: StoreWorldsResponseDto = {
     },
   ],
 };
+

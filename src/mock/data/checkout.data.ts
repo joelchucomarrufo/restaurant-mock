@@ -11,3 +11,4 @@ export const checkoutMockData: CheckoutResponseDto = {
   },
   idCheckout: checkoutProductsMockData.idLista,
 };
+

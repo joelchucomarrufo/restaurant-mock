@@ -33,3 +33,4 @@ export class RucResponseDto {
   })
   validationMessage!: string;
 }
+

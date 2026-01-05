@@ -181,3 +181,4 @@ export const storesMockData: StoresResponseDto = {
   wong: allStores.filter((t) => t.store.startsWith('T')),
   metro: allStores.filter((t) => t.store.startsWith('H')),
 };
+
