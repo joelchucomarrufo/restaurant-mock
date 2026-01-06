@@ -156,7 +156,7 @@ export const storeWorldsMockData: StoreWorldsResponseDto = {
     {
       ean: '7755211000021',
       name: 'Pasta al pesto',
-      adicionalDetails: 'Lorem ipsum dolor sit amet consectetur adipiscing elit curae maecenas.',
+      adicionalDetails: 'Lorem ipsum dolor sit amet consectetur adipiscing elit curae maecenas. Lorem ipsum dolor sit amet consectetur adipiscing elit curae maecenas. Lorem ipsum dolor sit amet consectetur adipiscing elit curae maecenas.',
       unitPrice: 8.5,
       stock: 3,
       image: 'https://takiplayer.com/cencosud/dish_two.png',
