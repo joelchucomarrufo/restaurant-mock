@@ -33,20 +33,14 @@ export class UserDto {
 }
 
 export class LoginUsernameRequestDto {
-  @ApiProperty({ example: 'login', description: 'Proceso a ejecutar' })
-  proceso!: string;
-
-  @ApiProperty({ example: 'TOTTEM', description: 'Canal' })
-  canal!: string;
-
   @ApiProperty({
-    example: 'provider',
+    example: 'prueba',
     description: 'Username del usuario',
   })
   username!: string;
 
   @ApiProperty({
-    example: 'provider123',
+    example: 'prueba123',
     description: 'Password del usuario',
   })
   password!: string;

@@ -22,6 +22,11 @@ import {
   StoresResponseDto,
   TiendaDto,
 } from './dto/stores.dto';
+import {
+  StoresUnitResponseDto,
+  StoreResponseDto,
+  ImageVideoDto,
+} from './dto/stores-v2.dto';
 import { AppConfigRequestDto, AppConfigResponseDto, ConfigDto } from './dto/app-config.dto';
 import {
   LoginUsernameRequestDto,
@@ -89,6 +94,7 @@ import { buildTotalReport } from './builders/total-report.builder';
 import { buildMovementReport } from './builders/movement-report.builder';
 import { buildSearchCreditNote } from './builders/search-credit-note.builder';
 import { buildCreateCreditNote } from './builders/create-credit-note.builder';
+import { adaptStoresResponseV2 } from './builders/stores-v2.builder';
 import {
   StoreWorldsRequestDto,
   StoreWorldsResponseDto,
@@ -149,6 +155,7 @@ import {
   BillingRequestDto,
   // Response DTOs
   StoresResponseDto,
+  StoresUnitResponseDto,
   AppConfigResponseDto,
   LoginUsernameResponseDto,
   SectionsResponseDto,
@@ -167,6 +174,8 @@ import {
   BillingResponseDto,
   // Nested DTOs
   TiendaDto,
+  StoreResponseDto,
+  ImageVideoDto,
   ImagenDto,
   ConfigDto,
   ProviderDto,
@@ -202,7 +211,8 @@ export class MockController {
   @ApiResponse({
     status: 200,
     description: 'Listado de tiendas mockeado.',
-    type: StoresResponseDto,
+    type: StoresUnitResponseDto,
+    isArray: true,
   })
   @ApiResponse({
     status: 401,
@@ -215,8 +225,8 @@ export class MockController {
       },
     },
   })
-  consultarTiendas(): StoresResponseDto {
-    return storesMockData;
+  consultarTiendas(): StoresUnitResponseDto[] {
+    return adaptStoresResponseV2(storesMockData);
   }
 
   @Get('app-config')
@@ -249,8 +259,6 @@ export class MockController {
     examples: {
       provider: {
         value: {
-          proceso: 'login',
-          canal: 'TOTTEM',
           username: 'provider',
           password: 'provider123',
         },
@@ -258,8 +266,6 @@ export class MockController {
       },
       admin: {
         value: {
-          proceso: 'login',
-          canal: 'TOTTEM',
           username: 'admin',
           password: 'admin123',
         },

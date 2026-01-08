@@ -1,16 +1,16 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 
 export class CategoryDto {
-  @ApiProperty({ example: 1, description: 'ID de la categoría' })
-  id!: number;
+  @ApiProperty({ example: '1', description: 'ID de la categoría' })
+  id!: string;
 
   @ApiProperty({ example: 'categoria1', description: 'Nombre de la categoría' })
   name!: string;
 }
 
 export class WorldDto {
-  @ApiProperty({ example: 1, description: 'ID del mundo' })
-  id!: number;
+  @ApiProperty({ example: '1', description: 'ID del mundo' })
+  id!: string;
 
   @ApiProperty({ example: 'Fusión', description: 'Nombre del mundo' })
   name!: string;
@@ -85,10 +85,10 @@ export class DishDto {
   rangeHours!: string | null;
 
   @ApiProperty({ example: 2, description: 'ID del mundo al que pertenece' })
-  idWorld!: number;
+  idWorld!: string;
 
-  @ApiProperty({ example: 3, description: 'ID de la categoría' })
-  idCategory!: number;
+  @ApiProperty({ example: '3', description: 'ID de la categoría' })
+  idCategory!: string;
 
   @ApiProperty({ example: true, description: 'Indica si permite comentarios' })
   comments!: boolean;

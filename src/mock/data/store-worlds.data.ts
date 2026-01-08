@@ -6,119 +6,119 @@ export const storeWorldsMockData: StoreWorldsResponseDto = {
   ipStationPrincipal: '12.123.342.31',
   world: [
     {
-      id: 1,
+      id: '1',
       name: 'Fusión',
       image: 'https://takiplayer.com/cencosud/option_one.png',
       categories: [
         {
-          id: 1,
+          id: '1',
           name: 'categoria1',
         },
         {
-          id: 2,
+          id: '2',
           name: 'categoria2',
         },
       ],
     },
     {
-      id: 2,
+      id: '2',
       name: 'Grill',
       image: 'https://takiplayer.com/cencosud/option_two.png',
       categories: [
         {
-          id: 3,
+          id: '3',
           name: 'categoria3',
         },
         {
-          id: 4,
+          id: '4',
           name: 'categoria4',
         },
       ],
     },
     {
-      id: 3,
+      id: '3',
       name: 'Marino',
       image: 'https://takiplayer.com/cencosud/option_three.png',
       categories: [
         {
-          id: 1,
+          id: '1',
           name: 'categoria1',
         },
         {
-          id: 2,
+          id: '2',
           name: 'categoria2',
         },
         {
-          id: 3,
+          id: '3',
           name: 'categoria3',
         },
         {
-          id: 4,
+          id: '4',
           name: 'categoria4',
         },
       ],
     },
     {
-      id: 4,
+      id: '4',
       name: 'Pizzas',
       image: 'https://takiplayer.com/cencosud/option_four.png',
       categories: [
         {
-          id: 1,
+          id: '1',
           name: 'categoria1',
         },
         {
-          id: 2,
+          id: '2',
           name: 'categoria2',
         },
         {
-          id: 3,
+          id: '3',
           name: 'categoria3',
         },
         {
-          id: 4,
+          id: '4',
           name: 'categoria4',
         },
         {
-          id: 5,
+          id: '5',
           name: 'categoria5',
         },
         {
-          id: 6,
+          id: '6',
           name: 'categoria6',
         },
       ],
     },
     {
-      id: 5,
+      id: '5',
       name: 'Saludable',
       image: 'https://takiplayer.com/cencosud/option_five.png',
       categories: [
         {
-          id: 5,
+          id: '5',
           name: 'categoria5',
         },
         {
-          id: 6,
+          id: '6',
           name: 'categoria6',
         },
       ],
     },
     {
-      id: 6,
+      id: '6',
       name: 'Sándwich',
       image: 'https://takiplayer.com/cencosud/option_six.png',
       categories: [
         {
-          id: 3,
+          id: '3',
           name: 'categoria3',
         },
         {
-          id: 4,
+          id: '4',
           name: 'categoria4',
         },
         {
-          id: 5,
+          id: '5',
           name: 'categoria5',
         },
       ],
@@ -134,8 +134,8 @@ export const storeWorldsMockData: StoreWorldsResponseDto = {
       image: 'https://takiplayer.com/cencosud/dish_one.png',
       restriction: true,
       rangeHours: '23:00 - 06:00',
-      idWorld: 2,
-      idCategory: 3,
+      idWorld: '2',
+      idCategory: '3',
       comments: true,
       tagPreferences: ['sin sal', 'con sal', 'termino 1/2'],
       cookingStation: 'estacion1',
@@ -162,8 +162,8 @@ export const storeWorldsMockData: StoreWorldsResponseDto = {
       image: 'https://takiplayer.com/cencosud/dish_two.png',
       restriction: false,
       rangeHours: null,
-      idWorld: 1,
-      idCategory: 2,
+      idWorld: '1',
+      idCategory: '2',
       comments: true,
       tagPreferences: ['sin sal', 'con sal', 'termino 1/2'],
       cookingStation: 'estacion1',
@@ -190,8 +190,8 @@ export const storeWorldsMockData: StoreWorldsResponseDto = {
       image: 'https://takiplayer.com/cencosud/dish_three.png',
       restriction: true,
       rangeHours: '23:00 - 06:00',
-      idWorld: 4,
-      idCategory: 4,
+      idWorld: '4',
+      idCategory: '4',
       comments: true,
       tagPreferences: ['sin sal', 'con sal', 'termino 1/2'],
       cookingStation: 'estacion1',
@@ -218,8 +218,8 @@ export const storeWorldsMockData: StoreWorldsResponseDto = {
       image: 'https://takiplayer.com/cencosud/dish_four.png',
       restriction: false,
       rangeHours: null,
-      idWorld: 3,
-      idCategory: 4,
+      idWorld: '3',
+      idCategory: '4',
       comments: true,
       tagPreferences: ['sin sal', 'con sal', 'termino 1/2'],
       cookingStation: 'estacion1',
