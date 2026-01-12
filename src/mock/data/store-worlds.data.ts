@@ -23,7 +23,7 @@ export const storeWorldsMockData: StoreWorldsResponseDto = {
     {
       id: '2',
       name: 'Grill',
-      image: 'https://takiplayer.com/cencosud/option_two.png',
+      image: 'SCeDSL6SDqVway6G8wpwm+anpHo7pNbx7be3meX87MH5WntBex8jKm9KSXkbrH/5Wbdtk3GZ7v2rqydbq/bs5XkXufaWVeWZWD3yh6zRsWfH4dsOIRiLNc06eD4o93oF',
       categories: [
         {
           id: '3',
