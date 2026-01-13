@@ -40,6 +40,9 @@ export class ProductDto {
 }
 
 export class DishDto {
+  @ApiProperty({ example: '1', description: 'ID del plato' })
+  id!: string;
+
   @ApiProperty({ example: '7755211000020', description: 'Código EAN del plato' })
   ean!: string;
 
@@ -84,7 +87,7 @@ export class DishDto {
   })
   rangeHours!: string | null;
 
-  @ApiProperty({ example: 2, description: 'ID del mundo al que pertenece' })
+  @ApiProperty({ example: '2', description: 'ID del mundo al que pertenece' })
   idWorld!: string;
 
   @ApiProperty({ example: '3', description: 'ID de la categoría' })

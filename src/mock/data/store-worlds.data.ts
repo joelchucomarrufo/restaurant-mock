@@ -126,6 +126,7 @@ export const storeWorldsMockData: StoreWorldsResponseDto = {
   ],
   dishes: [
     {
+      id: '1',
       ean: '7755211000020',
       name: 'Churrasco con vegetales',
       adicionalDetails: 'Lorem ipsum dolor sit amet consectetur adipiscing elit curae maecenas.',
@@ -154,6 +155,7 @@ export const storeWorldsMockData: StoreWorldsResponseDto = {
       ],
     },
     {
+      id: '2',
       ean: '7755211000021',
       name: 'Pasta al pesto',
       adicionalDetails: 'Lorem ipsum dolor sit amet consectetur adipiscing elit curae maecenas. Lorem ipsum dolor sit amet consectetur adipiscing elit curae maecenas. Lorem ipsum dolor sit amet consectetur adipiscing elit curae maecenas.',
@@ -182,6 +184,7 @@ export const storeWorldsMockData: StoreWorldsResponseDto = {
       ],
     },
     {
+      id: '3',
       ean: '7755211000022',
       name: 'Pizza de vegetales',
       adicionalDetails: 'Lorem ipsum dolor sit amet consectetur adipiscing elit curae maecenas.',
@@ -210,6 +213,7 @@ export const storeWorldsMockData: StoreWorldsResponseDto = {
       ],
     },
     {
+      id: '4',
       ean: '7755211000023',
       name: '6 Ostras frescas',
       adicionalDetails: 'Lorem ipsum dolor sit amet consectetur adipiscing elit curae maecenas.',
