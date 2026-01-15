@@ -7,7 +7,7 @@ async function bootstrap() {
   // Ocean Digital maneja HTTPS automáticamente, así que la app corre en HTTP internamente
   const app = await NestFactory.create(AppModule);
 
-  // Prefijo global para que coincida con la colección: /api/queries/...
+  // Prefijo global para que coincida con la colección: /api/totem-restaurant/...
   app.setGlobalPrefix('api');
 
   const config = new DocumentBuilder()

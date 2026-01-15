@@ -89,7 +89,7 @@ import { storeWorldsMockData } from './data/store-worlds.data';
 import { customerBenefitMockData } from './data/customer-benefit.data';
 import { rucMockData } from './data/ruc.data';
 import { checkoutMockData } from './data/checkout.data';
-import { billingMockData } from './data/billing.data';
+import { buildBillingResponse } from './data/billing.data';
 import { buildTotalReport } from './builders/total-report.builder';
 import { buildMovementReport } from './builders/movement-report.builder';
 import { buildSearchCreditNote } from './builders/search-credit-note.builder';
@@ -119,13 +119,30 @@ import {
 import {
   BillingRequestDto,
   BillingResponseDto,
+  BillingPaymentDetailsDto,
+  BillingCallCustomerDto,
+  BillingOrderDto,
   PaymentDetailsDto,
   CallCustomerDto,
   OrderResponseDto,
 } from './dto/billing.dto';
+import {
+  CheckoutRequestDto as CheckoutTotemRequestDto,
+  CheckoutResponseDto as CheckoutTotemResponseDto,
+  CheckoutProductRequestDto as CheckoutTotemProductRequestDto,
+  CheckoutCustomerRequestDto,
+  CheckoutBenefitRequestDto,
+  CheckoutBankPromotionDto,
+  CheckoutProductResponseDto,
+  CheckoutTotalsDto,
+  CheckoutOrderDto,
+  CheckoutCustomerResponseDto,
+  CheckoutBenefitResponseDto,
+} from './dto/checkout-totem.dto';
+import { buildCheckoutResponse } from './data/checkout-totem.data';
 
-@ApiTags('Tottem Mock')
-@Controller('queries')
+@ApiTags('Totem Restaurant')
+@Controller('totem-restaurant')
 @UseGuards(ApiKeyGuard)
 @ApiHeader({
   name: 'x-api-key',
@@ -153,6 +170,13 @@ import {
   CheckoutRequestDto,
   CheckoutProductRequestDto,
   BillingRequestDto,
+  BillingPaymentDetailsDto,
+  BillingCallCustomerDto,
+  CheckoutTotemRequestDto,
+  CheckoutTotemProductRequestDto,
+  CheckoutCustomerRequestDto,
+  CheckoutBenefitRequestDto,
+  CheckoutBankPromotionDto,
   // Response DTOs
   StoresResponseDto,
   StoresUnitResponseDto,
@@ -172,6 +196,13 @@ import {
   RucResponseDto,
   CheckoutResponseDto,
   BillingResponseDto,
+  BillingOrderDto,
+  CheckoutTotemResponseDto,
+  CheckoutProductResponseDto,
+  CheckoutTotalsDto,
+  CheckoutOrderDto,
+  CheckoutCustomerResponseDto,
+  CheckoutBenefitResponseDto,
   // Nested DTOs
   TiendaDto,
   StoreResponseDto,
@@ -849,72 +880,6 @@ export class MockController {
     };
   }
 
-  @Post('checkout')
-  @HttpCode(HttpStatus.OK)
-  @ApiOperation({ summary: 'Procesar checkout' })
-  @ApiBody({
-    type: CheckoutRequestDto,
-    examples: {
-      default: {
-        value: {
-          store: 'T104',
-          device: 'DEVICE001',
-          ipEpos: '10.166.218.228:8444',
-          ipStationPrincipal: '10.166.218.228:8444',
-          products: [
-            {
-              cantidad: 4,
-              ean: '7757419000086',
-              idSeccion: '003',
-              seccion: 'Cubiertos',
-            },
-          ],
-          customer: {
-            correoBonus: 'GLORIA_702@HOTMAIL.COM',
-            loyalty: {
-              numeroDocumento: '41254288',
-              tipoDocumento: 1,
-            },
-            numeroDocumento: null,
-            promocionBancaria: [
-              {
-                BIN: null,
-                id_mp: 10,
-              },
-            ],
-            razonSocial: 'SIN NOMBRE',
-            ruc: null,
-            tarjetaBonus: '7027661000027531363',
-            tipoDocumento: null,
-          },
-        },
-        description: 'Ejemplo de request para checkout',
-      },
-    },
-  })
-  @ApiResponse({
-    status: 200,
-    description: 'Checkout procesado exitosamente.',
-    type: CheckoutResponseDto,
-  })
-  @ApiResponse({
-    status: 401,
-    description: 'Unauthorized - API Key inválida o faltante',
-    schema: {
-      example: {
-        statusCode: 401,
-        message: 'Invalid x-api-key',
-        error: 'Unauthorized',
-      },
-    },
-  })
-  checkout(@Body() body: CheckoutRequestDto): CheckoutResponseDto {
-    return {
-      ...checkoutMockData,
-      idCheckout: `checkout-${Date.now()}`,
-    };
-  }
-
   @Post('billing')
   @HttpCode(HttpStatus.OK)
   @ApiOperation({ summary: 'Procesar facturación' })
@@ -924,18 +889,20 @@ export class MockController {
       default: {
         value: {
           store: 'T104',
-          device: 'DEVICE001',
+          device: 'TOTEM.001',
           ipEpos: '10.166.218.228:8444',
-          idCheckout: 'fc2ee037-cf46-424c-afc2-1235462d50ef',
+          idCheckout: '2b7c2e12-7f47-4a62-9f3d-2f2a9b2c9b5f',
           paymentDatails: {
-            method: 'CASH',
-            amount: 172.95,
+            card: '4556430000004333',
+            operator: 'Visa',
+            referenceNiubiz: '9999',
+            approverCode: 'A12332',
           },
           callCustomer: {
-            phone: '987654321',
-            name: 'Juan Pérez',
+            callingDisc: '232323223232323',
+            phone: '997087272',
           },
-          deliveryMethod: 'DELIVERY',
+          deliveryMethod: 1,
         },
         description: 'Ejemplo de request para facturación',
       },
@@ -958,11 +925,77 @@ export class MockController {
     },
   })
   billing(@Body() body: BillingRequestDto): BillingResponseDto {
-    return {
-      ...billingMockData,
-      store: body.store,
-      device: body.device,
-      idCheckout: body.idCheckout,
-    };
+    return buildBillingResponse(body);
+  }
+
+  @Post('checkout')
+  @HttpCode(HttpStatus.OK)
+  @ApiOperation({ summary: 'Procesar checkout de productos' })
+  @ApiBody({
+    type: CheckoutTotemRequestDto,
+    examples: {
+      default: {
+        value: {
+          store: 'T104',
+          device: 'TOTEM.001',
+          ipEpos: '10.166.218.228:8444',
+          ipStationPrincipal: '192.168.1.11',
+          products: [
+            {
+              ean: '7750243053020',
+              quantity: '1',
+              idSection: '2b7c2e12-7f47-4a62-9f3d-2f2a9b2c9b5f',
+              idCategory: '9a6e8c54-57c0-4f9a-8ed6-0e6c4f0c6f1a',
+              comments: 'No mezclar el arroz',
+              tagPreferences: ['sin_cebolla'],
+              cookingStation: 'estacion1',
+              ipStation: '192.168.1.10',
+            },
+          ],
+          customer: {
+            bonusCard: '7027661000211092966',
+            emailBonus: 'bonus@correo.com',
+            documentType: 'dni',
+            document: '45478547',
+            ruc: '20552103816',
+            companyName: 'Cencosud',
+            benefit: {
+              documentType: 0,
+              document: '45478547',
+              prime: false,
+              collaborator: false,
+              coupons: ['string'],
+            },
+            couponsInput: null,
+            bankPromotion: [
+              {
+                id_mp: 1,
+                BIN: '457562',
+              },
+            ],
+          },
+        },
+        description: 'Ejemplo de request para checkout',
+      },
+    },
+  })
+  @ApiResponse({
+    status: 200,
+    description: 'Checkout procesado exitosamente.',
+    type: CheckoutTotemResponseDto,
+  })
+  @ApiResponse({
+    status: 401,
+    description: 'Unauthorized - API Key inválida o faltante',
+    schema: {
+      example: {
+        statusCode: 401,
+        message: 'Invalid x-api-key',
+        error: 'Unauthorized',
+      },
+    },
+  })
+  checkout(@Body() body: CheckoutTotemRequestDto): CheckoutTotemResponseDto {
+    return buildCheckoutResponse(body);
   }
 }
