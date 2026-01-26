@@ -8,21 +8,18 @@ export class ProviderDto {
   name!: string;
 }
 
-export class UserDto {
-  @ApiProperty({ example: 6, description: 'ID del usuario' })
-  id!: number;
+export class LoginDataDto {
+  @ApiProperty({
+    example: 'a1b2c3d4-e5f6-4a7b-8c9d-0e1f2a3b4c5d',
+    description: 'ID del usuario (UUID)',
+  })
+  id!: string;
 
   @ApiProperty({ example: 'provider', description: 'Username' })
   username!: string;
 
   @ApiProperty({ example: 'MAINTAINER', description: 'Rol del usuario' })
   role!: string;
-
-  @ApiProperty({
-    type: () => ProviderDto,
-    description: 'Información del proveedor',
-  })
-  provider!: ProviderDto;
 
   @ApiProperty({
     example: {},
@@ -47,14 +44,8 @@ export class LoginUsernameRequestDto {
 }
 
 export class LoginUsernameResponseDto {
-  @ApiProperty({ example: 'login', description: 'Proceso ejecutado' })
-  proceso!: string;
-
-  @ApiProperty({ example: 'TOTTEM', description: 'Canal' })
-  canal!: string;
-
-  @ApiProperty({ example: 200, description: 'Código de estado' })
-  statusCode!: number;
+  @ApiProperty({ example: true, description: 'Indica si el login fue exitoso' })
+  isSuccess!: boolean;
 
   @ApiProperty({
     example: 'Login exitoso.',
@@ -63,10 +54,35 @@ export class LoginUsernameResponseDto {
   message!: string;
 
   @ApiProperty({
-    type: () => UserDto,
-    description: 'Información del usuario',
+    type: () => LoginDataDto,
+    description: 'Datos del usuario',
   })
-  user!: UserDto;
+  data!: LoginDataDto;
+}
+
+// Mantener UserDto y ProviderDto para compatibilidad si se necesitan en otros lugares
+export class UserDto {
+  @ApiProperty({ example: 6, description: 'ID del usuario' })
+  id!: number;
+
+  @ApiProperty({ example: 'provider', description: 'Username' })
+  username!: string;
+
+  @ApiProperty({ example: 'MAINTAINER', description: 'Rol del usuario' })
+  role!: string;
+
+  @ApiProperty({
+    type: () => ProviderDto,
+    description: 'Información del proveedor',
+  })
+  provider!: ProviderDto;
+
+  @ApiProperty({
+    example: {},
+    description: 'Funciones del usuario',
+    default: {},
+  })
+  functions!: Record<string, any>;
 }
 
 

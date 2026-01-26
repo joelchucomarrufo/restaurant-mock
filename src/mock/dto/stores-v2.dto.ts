@@ -1,11 +1,24 @@
-import { ApiProperty } from '@nestjs/swagger';
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 
 export class ImageVideoDto {
   @ApiProperty({
-    example: 'cabecera',
-    description: 'Tipo de imagen/video',
+    example: 'img-cabecera-001',
+    description: 'ID único de la imagen/video',
+  })
+  id!: string;
+
+  @ApiProperty({
+    example: 'image',
+    description: 'Tipo de contenido (image o video)',
+    enum: ['image', 'video'],
   })
   type!: string;
+
+  @ApiProperty({
+    example: 'Cabecera Principal',
+    description: 'Nombre de la imagen/video',
+  })
+  name!: string;
 
   @ApiProperty({
     example: 'SCeDSL6SDqVway6G8wpwm+anpHo7pNbx7be3meX87MFI8Jzx9r1VhNEXE/1pHrQMXzL5ZXOdHlIGiEXpMRjLWa9Nr0EOpGisgBT+NU84Ze4=',
@@ -33,11 +46,12 @@ export class StoreResponseDto {
   })
   ipEpos!: string;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     example: '104',
     description: 'Número EPOS (como string)',
+    nullable: true,
   })
-  numberEpos!: string;
+  numberEpos!: string | null;
 
   @ApiProperty({
     example: 'Direccion 123',
@@ -79,7 +93,14 @@ export class StoreResponseDto {
   @ApiProperty({
     type: () => [ImageVideoDto],
     description: 'Imágenes y videos de la tienda',
-    example: [{ type: 'cabecera', url: '<encrypted>' }],
+    example: [
+      {
+        id: 'img-cabecera-001',
+        type: 'image',
+        name: 'Cabecera Principal',
+        url: '<encrypted>',
+      },
+    ],
   })
   imagesVideos!: ImageVideoDto[];
 }

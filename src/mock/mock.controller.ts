@@ -31,6 +31,7 @@ import { AppConfigRequestDto, AppConfigResponseDto, ConfigDto } from './dto/app-
 import {
   LoginUsernameRequestDto,
   LoginUsernameResponseDto,
+  LoginDataDto,
   ProviderDto,
   UserDto,
 } from './dto/login-username.dto';
@@ -182,6 +183,7 @@ import { buildCheckoutResponse } from './data/checkout-totem.data';
   StoresUnitResponseDto,
   AppConfigResponseDto,
   LoginUsernameResponseDto,
+  LoginDataDto,
   SectionsResponseDto,
   DetailSectionsResponseDto,
   LoyaltiResponseDto,
