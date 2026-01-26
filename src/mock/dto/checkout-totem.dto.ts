@@ -6,8 +6,12 @@ export class CheckoutBankPromotionDto {
   @ApiProperty({ example: 1, description: 'ID del medio de pago' })
   id_mp!: number;
 
-  @ApiProperty({ example: '457562', description: 'BIN de la tarjeta' })
-  BIN!: string;
+  @ApiPropertyOptional({
+    example: '457562',
+    description: 'BIN de la tarjeta',
+    nullable: true,
+  })
+  BIN!: string | null;
 }
 
 export class CheckoutBenefitRequestDto {
@@ -48,11 +52,11 @@ export class CheckoutCustomerRequestDto {
   emailBonus!: string | null;
 
   @ApiPropertyOptional({
-    example: 'dni',
-    description: 'Tipo de documento',
+    example: 0,
+    description: 'Tipo de documento (0=DNI, 1=CE, etc)',
     nullable: true,
   })
-  documentType!: string | null;
+  documentType!: number | null;
 
   @ApiPropertyOptional({
     example: '45478547',
@@ -191,7 +195,7 @@ export class CheckoutProductResponseDto {
     description: 'Lista de descuentos',
     default: [],
   })
-  discounts!: any[];
+  discounts!: unknown[];
 }
 
 export class CheckoutTotalsDto {
@@ -236,11 +240,11 @@ export class CheckoutCustomerResponseDto {
   bonusCard!: string | null;
 
   @ApiPropertyOptional({
-    example: 'dni',
-    description: 'Tipo de documento',
+    example: 0,
+    description: 'Tipo de documento (0=DNI, 1=CE, etc)',
     nullable: true,
   })
-  documentType!: string | null;
+  documentType!: number | null;
 
   @ApiPropertyOptional({
     example: '45478547',
@@ -274,7 +278,7 @@ export class CheckoutCustomerResponseDto {
     description: 'Input de cupones',
     nullable: true,
   })
-  couponsInput!: string | null;
+  couponsInput!: any | null;
 
   @ApiPropertyOptional({
     type: () => [CheckoutBankPromotionDto],

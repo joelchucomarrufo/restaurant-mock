@@ -59,7 +59,10 @@ export function buildCheckoutResponse(
   // Construir respuesta del cliente
   const customer = {
     bonusCard: request.customer.bonusCard || null,
-    documentType: request.customer.documentType || null,
+    documentType:
+      request.customer.documentType !== null && request.customer.documentType !== undefined
+        ? request.customer.documentType
+        : null,
     document: request.customer.document || null,
     ruc: request.customer.ruc || null,
     companyName: request.customer.companyName || null,
@@ -78,7 +81,7 @@ export function buildCheckoutResponse(
           coupons: [],
           prime: false,
         },
-    couponsInput: request.customer.couponsInput || null,
+    couponsInput: request.customer.couponsInput !== undefined ? request.customer.couponsInput : null,
     bankPromotion: request.customer.bankPromotion || [],
   };
 

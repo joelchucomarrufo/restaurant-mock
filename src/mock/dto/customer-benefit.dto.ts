@@ -58,6 +58,13 @@ export class CustomerBenefitResponseDto {
   })
   bonusCard!: string;
 
+  @ApiPropertyOptional({
+    example: 'bonus@correo.com',
+    description: 'Email Bonus',
+    nullable: true,
+  })
+  emailBonus!: string | null;
+
   @ApiProperty({ example: false, description: 'Indica si es prime' })
   prime!: boolean;
 
@@ -65,9 +72,11 @@ export class CustomerBenefitResponseDto {
   colaborator!: boolean;
 
   @ApiProperty({
-    type: () => [CouponDto],
+    type: () => [String],
+    example: ['COUPON001', 'COUPON002'],
     description: 'Lista de cupones disponibles',
+    default: [],
   })
-  coupons!: CouponDto[];
+  coupons!: string[];
 }
 

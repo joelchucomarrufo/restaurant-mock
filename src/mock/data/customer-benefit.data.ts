@@ -5,19 +5,9 @@ export const customerBenefitMockData: CustomerBenefitResponseDto = {
   device: 'DEVICE001',
   bonusMessage: 'Hola NOMBRE, tienes 4478 puntos.',
   bonusCard: '7027661000601779651',
+  emailBonus: 'bonus@correo.com',
   prime: false,
   colaborator: true,
-  coupons: [
-    {
-      code: 'COUPON001',
-      description: 'Descuento 10%',
-      discount: 10,
-    },
-    {
-      code: 'COUPON002',
-      description: 'Descuento 15%',
-      discount: 15,
-    },
-  ],
+  coupons: ['COUPON001', 'COUPON002'],
 };
 

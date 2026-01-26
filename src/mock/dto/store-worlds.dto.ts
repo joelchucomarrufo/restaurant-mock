@@ -16,8 +16,8 @@ export class WorldDto {
   name!: string;
 
   @ApiProperty({
-    example: 'https://takiplayer.com/cencosud/option_one.png',
-    description: 'URL de la imagen del mundo',
+    example: 'SCeDSL6SDqVway6G8wpwm+anpHo7pNbx7be3meX87MFI8Jzx9r1VhNEXE/1pHrQMXzL5ZXOdHlIGiEXpMRjLWa9Nr0EOpGisgBT+NU84Ze4=',
+    description: 'Imagen del mundo en base64',
   })
   image!: string;
 
@@ -65,17 +65,11 @@ export class DishDto {
   })
   stock!: number | null;
 
-  @ApiPropertyOptional({
-    example: 'https://takiplayer.com/cencosud/dish_one.png',
-    description: 'URL de la imagen del plato',
+  @ApiProperty({
+    example: 'SCeDSL6SDqVway6G8wpwm+anpHo7pNbx7be3meX87MFI8Jzx9r1VhNEXE/1pHrQMColS3F4UfjCxJnuo/TbhOSQfjt+m2M9YixDHmU1mMz8=',
+    description: 'Imagen del plato en base64',
   })
-  image?: string;
-
-  @ApiPropertyOptional({
-    example: 'https://takiplayer.com/cencosud/dish_two.png',
-    description: 'URL de la imagen del plato (alternativo)',
-  })
-  imagen?: string;
+  image!: string;
 
   @ApiProperty({ example: true, description: 'Indica si tiene restricciones' })
   restriction!: boolean;
@@ -90,8 +84,12 @@ export class DishDto {
   @ApiProperty({ example: '2', description: 'ID del mundo al que pertenece' })
   idWorld!: string;
 
-  @ApiProperty({ example: '3', description: 'ID de la categoría' })
-  idCategory!: string;
+  @ApiPropertyOptional({
+    example: '3',
+    description: 'ID de la categoría',
+    nullable: true,
+  })
+  idCategory!: string | null;
 
   @ApiProperty({ example: true, description: 'Indica si permite comentarios' })
   comments!: boolean;
