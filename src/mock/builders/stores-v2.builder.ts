@@ -44,12 +44,12 @@ function mapStore(tienda: TiendaDto): StoreResponseDto {
   // Generar nombre basado en el id
   const getImageName = (id: string): string => {
     const nameMap: Record<string, string> = {
-      cabecera: 'Cabecera Principal',
-      principal: 'Imagen Principal',
-      opcional: 'Imagen Opcional',
-      inactividad: 'Imagen de Inactividad',
+      cabecera: 'cabecera.jpeg',
+      principal: 'principal.jpeg',
+      opcional: 'opcional.jpeg',
+      inactividad: 'inactividad.jpeg',
     };
-    return nameMap[id.toLowerCase()] || `Imagen ${id}`;
+    return nameMap[id.toLowerCase()] || `${id}.jpeg`;
   };
 
   return {
@@ -64,7 +64,7 @@ function mapStore(tienda: TiendaDto): StoreResponseDto {
     device: tienda.device,
     imagesVideos: tienda.imagesVideos.map(
       (iv): ImageVideoDto => ({
-        id: `img-${iv.id}-${tienda.store}`,
+        id: iv.id,
         type: getImageType(iv.id),
         name: getImageName(iv.id),
         url: iv.url,

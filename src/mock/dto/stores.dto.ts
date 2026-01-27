@@ -50,17 +50,19 @@ export class TiendaDto {
   })
   ipEpos!: string;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     example: 123,
     description: 'Número EPOS',
+    nullable: true,
   })
-  numberEpos!: number;
+  numberEpos!: number | null;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     example: 'Direccion 123',
     description: 'Dirección de la tienda',
+    nullable: true,
   })
-  address!: string;
+  address!: string | null;
 
   @ApiProperty({
     example: false,

@@ -659,7 +659,13 @@ export class MockController {
   @ApiOperation({ summary: 'Health check del servicio mock' })
   @ApiResponse({ status: 200, type: HealthResponseDto })
   health(): HealthResponseDto {
-    return { ok: 'serv restaurnat' };
+    return {
+      service: 'totem-rs',
+      status: 'ok',
+      db: 'ok',
+      timestamp: new Date().toISOString(),
+      latencyMs: 2,
+    };
   }
 
   @Post('search-credit-note')
